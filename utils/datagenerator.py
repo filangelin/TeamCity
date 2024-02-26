@@ -1,0 +1,45 @@
+import string
+import random
+
+from faker import Faker
+
+faker_instance = Faker()
+
+
+class DataGenerator:
+    """
+    Фейкер для генерации рандомных данных или значений
+    """
+
+    @staticmethod
+    def fake_project_id():
+        first_letter = faker_instance.random.choice(string.ascii_letters)
+        rest_characters = ''.join(faker_instance.random.choices(string.ascii_letters + string.digits, k=10))
+        project_id = first_letter + rest_characters
+        return project_id
+
+    @staticmethod
+    def fake_project_name():
+        return faker_instance.word()
+
+    @staticmethod
+    def fake_name():
+        return faker_instance.first_name()
+
+    @staticmethod
+    def fake_build_id():
+        first_letter = faker_instance.random.choice(string.ascii_letters)
+        rest_characters = ''.join(faker_instance.random.choices(string.ascii_letters + string.digits, k=10))
+        project_id = first_letter + rest_characters
+        return project_id
+
+    @staticmethod
+    def fake_password():
+        password_characters = string.ascii_letters + string.digits + string.punctuation
+        password = ''.join(random.choice(password_characters) for i in range(8))
+        return password
+
+    @staticmethod
+    def fake_email():
+        email = faker_instance.email()
+        return email
