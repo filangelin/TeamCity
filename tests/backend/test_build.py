@@ -14,7 +14,7 @@ class TestBuild:
         project_data, user = prepared_project
         with allure.step('Создание билда'):
             build_data = BuildData.create_build_data(project_data.id)
-            build = user.api_object.build_api.create_build(build_data.model_dump())
+            user.api_object.build_api.create_build(build_data.model_dump())
 
         with allure.step('Проверка созданного билда'):
             check_build = user.api_object.build_api.check_build(build_data.id)
