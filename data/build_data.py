@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from utils.datagenerator import DataGenerator
+from typing import Optional, List
 
 
 class BuildDataModel(BaseModel):
@@ -58,14 +59,87 @@ class StepModel(BaseModel):
     properties: object
 
 
-class StepsModel(BaseModel):
-    step: list[StepModel]
-
-
 class PropertyModel(BaseModel):
     name: str
     value: str
 
 
-class PropertiesModel(BaseModel):
-    property: list[PropertyModel]
+class Templates(BaseModel):
+    count: int
+    buildType: list
+
+
+class Property(BaseModel):
+    name: str
+    value: str
+
+
+class Settings(BaseModel):
+    property: Optional[List[Property]] = None
+    count: int
+
+
+class Parameters(BaseModel):
+    property: list
+    count: int
+    href: str
+
+
+class VcsRootEntries(BaseModel):
+    count: int
+    vcs_root_entry: list
+
+
+class Counter(BaseModel):
+    count: int
+
+
+class Href(BaseModel):
+    href: str
+
+
+class StepProperty(BaseModel):
+    name: str
+    value: str
+
+
+class StepProperties(BaseModel):
+    property: List[StepProperty]
+    count: int
+
+
+class Step(BaseModel):
+    id: str
+    name: str
+    type: str
+    properties: StepProperties
+
+
+class Steps(BaseModel):
+    count: int
+    step: List[Step]
+
+
+class BuildResponseModel(BaseModel):
+    model_config = ConfigDict(extra="allow")
+    id: str
+    name: str
+    projectName: str
+    projectId: str
+    href: str
+    webUrl: str
+    project: ProjectModel
+    templates: Optional[Templates] = None
+    vcs_root_entries: Optional[VcsRootEntries] = None
+    settings: Optional[Settings] = None
+    parameters: Optional[Parameters] = None
+    steps: Steps
+    features: Optional[Counter] = None
+    triggers: Optional[Counter] = None
+    snapshot_dependencies: Optional[Counter] = None
+    artifact_dependencies: Optional[Counter] = None
+    agent_requirements: Optional[Counter] = None
+    builds: Optional[Href] = None
+    investigations: Optional[Href] = None
+    compatibleAgents: Optional[Href] = None
+    compatibleCloudImages: Optional[dict] = None

@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from data.build_data import BuildData
+from data.build_data import BuildData, BuildResponseModel
 
 
 class TestBuild:
@@ -15,9 +15,17 @@ class TestBuild:
         with allure.step('Создание билда'):
             build_data = BuildData.create_build_data(project_data.id)
             user.api_object.build_api.create_build(build_data.model_dump())
+            build_name = build_data.name
 
         with (allure.step('Проверка созданного билда')):
-            check_build = user.api_object.build_api.check_build(build_data.id)
+            check_build = user.api_object.build_api.check_build(build_data.id).text
+            build_response = BuildResponseModel.model_validate_json(check_build)
             with pytest.assume:
-                assert check_build.status_code == 200, \
-                    f"Expected status-code - 200, but given - '{check_build.status_code}''"
+                assert build_response.id == build_data.id, \
+                    f"Expected build id - {build_data.id}, but given - {build_response.id}"
+            with pytest.assume:
+                assert build_response.name == build_name, \
+                    f"Expected build name - {build_name}, but given - {build_response.name}"
+            with pytest.assume:
+                assert build_response.project.id == project_data.id, \
+                    f"Expected build's project id - {project_data.id}, but given - {build_response.project.id}"
