@@ -1,7 +1,9 @@
+from http import HTTPStatus
+
 import allure
 import pytest
 
-from data.build_data import BuildData, BuildResponseModel
+from data.build_data import BuildData, BuildResponseModel, LocatedBuildsModel
 
 
 class TestBuild:
@@ -29,3 +31,32 @@ class TestBuild:
             with pytest.assume:
                 assert build_response.project.id == project_data.id, \
                     f"Expected build's project id - {project_data.id}, but given - {build_response.project.id}"
+
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title('Проверка удаления билда')
+    @allure.description('Тест проверяет удаление билда')
+    def test_delete_build(self, prepared_project):
+        project_data, user = prepared_project
+        with allure.step('Создание билда'):
+            build_data = BuildData.create_build_data(project_data.id)
+            user.api_object.build_api.create_build(build_data.model_dump())
+        with (allure.step('Проверка, что у проекта появился билд')):
+            build_of_project = user.api_object.build_api.locate_builds_of_project(project_data.id).text
+            located_response = LocatedBuildsModel.model_validate_json(build_of_project)
+            with pytest.assume:
+                assert located_response.count == 1, \
+            f"Expected project has build, but given - {located_response.count} builds"
+            with pytest.assume:
+                assert located_response.buildType[0].id == build_data.id, \
+                    f"Expected project's build id - {project_data.id}, but given - {located_response.buildType[0].id}"
+
+        with allure.step('Удаление билда'):
+            user.api_object.build_api.delete_build(build_data.id)
+        with allure.step('Проверка отсутствия удаленного билда'):
+            user.api_object.build_api.check_build(build_data.id, expected_status=HTTPStatus.NOT_FOUND)
+        with allure.step('Проверка, что у проекта нет билдов'):
+            build_of_project = user.api_object.build_api.locate_builds_of_project(project_data.id).text
+            located_response = LocatedBuildsModel.model_validate_json(build_of_project)
+            with pytest.assume:
+                assert located_response.count == 0, \
+                    f"Expected project hasn't builds, but given - {located_response.count} builds"

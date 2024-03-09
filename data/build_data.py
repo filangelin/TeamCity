@@ -143,3 +143,18 @@ class BuildResponseModel(BaseModel):
     investigations: Optional[Href] = None
     compatibleAgents: Optional[Href] = None
     compatibleCloudImages: Optional[dict] = None
+
+
+class BuildTypeItem(BaseModel):
+    id: str
+    name: str
+    projectName: str
+    projectId: str
+    href: str
+    webUrl: str
+
+
+class LocatedBuildsModel(BaseModel):
+    count: int
+    href: str
+    buildType: List[BuildTypeItem]
