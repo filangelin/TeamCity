@@ -16,7 +16,8 @@ class TestBuild:
             build_data = BuildData.create_build_data(project_data.id)
             user.api_object.build_api.create_build(build_data.model_dump())
 
-        with allure.step('Проверка созданного билда'):
+        with (allure.step('Проверка созданного билда')):
             check_build = user.api_object.build_api.check_build(build_data.id)
             with pytest.assume:
-                assert check_build.status_code == 200, "Не удалось проверить билд"
+                assert check_build.status_code == 200, \
+                    f"Expected status-code - 200, but given - '{check_build.status_code}''"

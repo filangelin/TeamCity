@@ -21,9 +21,12 @@ class TestProjectCreate:
             create_project_response = user.api_object.project_api.create_project(project_data.model_dump()).text
             project_response = ProjectResponseModel.model_validate_json(create_project_response)
             with pytest.assume:
-                assert project_response.id == project_data.id
+                assert project_response.id == project_data.id, \
+                    f"Expected project id - {project_data.id}, but given - '{project_response.id}'"
         with allure.step('Проверка наличия только что созданного проекта в списке проектов'):
             get_projects_response = user.api_object.project_api.get_project_by_locator(project_data.id).text
             received_project = ProjectResponseModel.model_validate_json(get_projects_response)
             with pytest.assume:
-                assert received_project.id == project_data.id
+                assert received_project.id == project_data.id, \
+                    f"Expected project id - {project_data.id}, but given - '{received_project.id}'"
+
