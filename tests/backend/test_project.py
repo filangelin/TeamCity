@@ -37,11 +37,9 @@ class TestProjectCreate:
     @allure.testcase('https://testcase.manager/testcase/450', name='Тест-кейс')
     @allure.title('Проверка невозможность создания проекта с пустым телом')
     @allure.description('Тест проверяет невозможность создания проекта c пустым телом')
-    def test_project_create_with_empty_body(self, prepared_project):
-        with allure.step('Подготовка данных'):
-            _, user = prepared_project
+    def test_project_create_with_empty_body(self, super_admin):
         with allure.step('Попытка создания проекта'):
-            created_project = user.api_object.project_api.create_project({}, expected_status=HTTPStatus.BAD_REQUEST).text
+            created_project = super_admin.api_object.project_api.create_project({}, expected_status=HTTPStatus.BAD_REQUEST).text
         with allure.step('Проверка ответа о невозможности создания проекта с пустым телом'):
             with pytest.assume:
                 assert f"Project name cannot be empty." in created_project, \
@@ -56,16 +54,14 @@ class TestProjectCreate:
     def test_project_create_with_taken_name(self, prepared_project):
         with allure.step('Подготовка данных'):
             project_data, user = prepared_project
-            project_data2, user = prepared_project
+            project_data_2 = {**project_data.model_dump(), 'name': project_data.name, 'id': f'{project_data.id}_id'}
         with allure.step('Создание проекта'):
             user.api_object.project_api.create_project(project_data.model_dump())
-
-        project_data_2 = {**project_data.model_dump(), 'name': project_data.name}
         with allure.step('Попытка создания проекта 2'):
             user.api_object.project_api.create_project(project_data_2, expected_status=HTTPStatus.BAD_REQUEST)
         with allure.step('Проверка, что не создался проект с занятым именем'):
             get_project = user.api_object.project_api.get_project().json()
             project_ids = [project.get('id') for project in get_project.get('project')]
             with pytest.assume:
-                assert project_data2.id not in project_ids, \
-                    f"Expected project with id - {project_data2.id} doesn't exist"
+                assert project_data_2.get('id') not in project_ids, \
+                    f"Expected project with id - {project_data_2.get('id')} doesn't exist"

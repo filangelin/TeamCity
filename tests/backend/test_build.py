@@ -38,11 +38,9 @@ class TestBuild:
     @allure.testcase('https://testcase.manager/testcase/450', name='Тест-кейс')
     @allure.title('Проверка невозможность создания билда с пустым телом')
     @allure.description('Тест проверяет невозможность создания билда c пустым телом')
-    def test_build_create_with_empty_body(self, prepared_project):
-        with allure.step('Подготовка данных'):
-            project_data, user = prepared_project
+    def test_build_create_with_empty_body(self, super_admin):
         with allure.step('Попытка создания проекта'):
-            created_build = user.api_object.build_api.create_build({}, expected_status=HTTPStatus.BAD_REQUEST).text
+            created_build = super_admin.api_object.build_api.create_build({}, expected_status=HTTPStatus.BAD_REQUEST).text
         with allure.step('Проверка ответа о невозможности создания билда с пустым телом'):
             with pytest.assume:
                 assert f"Build type creation request should contain project node." in created_build, \
