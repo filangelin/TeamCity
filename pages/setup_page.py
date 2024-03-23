@@ -27,8 +27,7 @@ class Agreement(BasePage):
         self.checkbox_selector = "input#accept"
         self.continue_button_selector = "checkbox_selector"
 
-    def ckeck_in_box(self):
-        self.actions.check_url("hhh")
+    def check_in_box(self):
         self.actions.is_button_active(self.checkbox_selector)
         self.actions.click_button(self.checkbox_selector)
 
@@ -68,7 +67,7 @@ class SetupPage(BasePage):
         self.actions.wait_for_page_load()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
-        self.agreement.ckeck_in_box()
+        self.agreement.check_in_box()
         self.agreement.continue_agreement()
         self.actions.wait_for_page_load()
         self.setup_user.fill_user_data(username, password)
