@@ -1,5 +1,6 @@
 import time
 
+from enums.host import BASE_URL
 from pages.base_page import BasePage
 
 
@@ -64,7 +65,7 @@ class SetupPage(BasePage):
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)
         self.setup_user = SetupUser(self.page)
-        self.page_url_after_creating = "/favorite/projects"
+        self.page_url_after_creating = f"{BASE_URL}/favorite/projects"
 
     def set_up(self, username="admin", password="admin"):
         self.actions.navigate(self.page_url)
