@@ -1,5 +1,3 @@
-
-from enums.host import BASE_URL
 from pages.base_page import BasePage
 
 
@@ -26,7 +24,7 @@ class Loading(BasePage):
 class Agreement(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.page_url = f"{BASE_URL}/showAgreement.html"
+        self.page_url = "/showAgreement.html"
         self.checkbox_selector = "input#accept"
         self.continue_button_selector = "checkbox_selector"
 
@@ -63,7 +61,7 @@ class SetupUser(BasePage):
 class SetupPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.page_url = f"{BASE_URL}/mnt"
+        self.page_url = f"/mnt"
         self.first_starts_window = FirstStartsWindow(self.page)
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)
