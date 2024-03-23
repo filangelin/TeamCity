@@ -30,9 +30,9 @@ class PageAction:
         with allure.step(f"Проверка видимости элемента: {selector}"):
             expect(self.page.locator(selector)).to_be_visible()
 
-    def is_button_active(self, selector):
+    def is_button_active(self, selector, timeout=3000):
         with allure.step(f"Проверка активности кнопки: {selector}"):
-            expect(self.page.locator(selector)).to_be_enabled()
+            expect(self.page.locator(selector)).to_be_enabled(timeout=timeout)
 
     def input_text(self, selector, text):
         with allure.step(f"Ввод текста '{text}' в элемент {selector}"):
