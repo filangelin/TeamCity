@@ -15,10 +15,9 @@ class FirstStartsWindow(BasePage):
 class Loading(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.proceed_db_button_selector = "input#proceedButton"
 
     def wait_loading(self):
-        self.actions.wait_for_page_load(timeout=360000)
+        self.actions.wait_for_page_load()
 
 
 class Agreement(BasePage):
@@ -29,7 +28,7 @@ class Agreement(BasePage):
         self.continue_button_selector = "checkbox_selector"
 
     def check_in_box(self):
-        self.actions.wait_for_selector(self.checkbox_selector)
+        self.actions.wait_for_selector(self.checkbox_selector, timeout=60000)
         self.actions.check_in_box(self.checkbox_selector)
 
     def continue_agreement(self):
