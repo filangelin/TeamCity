@@ -19,7 +19,7 @@ class Loading(BasePage):
         super().__init__(page)
 
     def wait_loading(self):
-        time.sleep(15)
+        time.sleep(10)
         self.actions.wait_for_page_load()
 
 
@@ -55,7 +55,8 @@ class SetupUser(BasePage):
 
     def create_admin(self):
         self.actions.click_button(self.create_account_button_selector)
-        self.actions.wait_for_url_change(self.page_url_after_creating, timeout=120000)
+        self.actions.wait_for_page_load()
+        self.actions.check_url(self.page_url_after_creating)
 
 
 class SetupPage(BasePage):
