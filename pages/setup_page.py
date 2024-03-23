@@ -24,7 +24,6 @@ class Loading(BasePage):
 class Agreement(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.page_url =
         self.checkbox_selector = "input#accept"
         self.continue_button_selector = "checkbox_selector"
 
