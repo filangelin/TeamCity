@@ -30,9 +30,9 @@ class Agreement(BasePage):
         self.continue_button_selector = "checkbox_selector"
 
     def check_in_box(self):
-        time.sleep(300)
-        self.actions.check_url("https::/localhost:8111/mnt")
+        self.actions.check_url("http://localhost:8111/mnt")
         self.actions.click_button("input#proceedButton")
+        time.sleep(30)
         self.actions.is_button_active(self.checkbox_selector, 120000)
         self.actions.click_button(self.checkbox_selector)
 
