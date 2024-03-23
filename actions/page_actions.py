@@ -18,9 +18,9 @@ class PageAction:
         with allure.step(f"Ожидание изменения URL на {expected_url}"):
             self.page.wait_for_url(expected_url)
 
-    def wait_for_page_load(self):
+    def wait_for_page_load(self, timeout=3000):
         with allure.step("Ожидание загрузки страницы"):
-            self.page.wait_for_load_state('load')
+            self.page.wait_for_load_state('load', timeout=timeout)
 
     def click_button(self, selector):
         with allure.step(f"Клик по элементу: {selector}"):
