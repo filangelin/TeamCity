@@ -59,7 +59,7 @@ class SetupUser(BasePage):
 
 
 class SetupPage(BasePage):
-    def __init__(self):
+    def __init__(self, page):
         super().__init__()
         self.first_starts_window = FirstStartsWindow(self.page)
         self.loading = Loading(self.page)
