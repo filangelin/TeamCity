@@ -1,5 +1,4 @@
 from pages.base_page import BasePage
-from pages.login_page import LoginPage
 
 
 class FirstStartsWindow(BasePage):
@@ -60,7 +59,7 @@ class SetupUser(BasePage):
 
 class SetupPage(BasePage):
     def __init__(self, page):
-        super().__init__()
+        super().__init__(page)
         self.first_starts_window = FirstStartsWindow(self.page)
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)

@@ -60,6 +60,11 @@ jobs:
           sudo apt-get install -y python3.10 python3-pip
           pip install -r requirements.txt
 
+      - name: Install WOFF2 Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y woff2 libwoff-dev
+
       - name: Run Set Up Test
         run: |
           playwright install
