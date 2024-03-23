@@ -74,6 +74,3 @@ class PageAction:
                 new_page = new_page_info.value
                 expect(new_page).to_have_url(expected_url)
 
-    def check_in_box(self, selector):
-        with allure.step("Нажатие на чекбокс"):
-            self.page.check(selector, force=True)
