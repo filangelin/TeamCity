@@ -76,4 +76,4 @@ class PageAction:
 
     def check_in_box(self, selector):
         with allure.step("Нажатие на чекбокс"):
-            self.page.check(selector)
+            self.page.check(selector, force=True)
