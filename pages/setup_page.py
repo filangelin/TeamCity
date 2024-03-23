@@ -46,7 +46,6 @@ class SetupUser(BasePage):
         self.password_selector = "input#password1"
         self.password_confirm_selector = "input#retypedPassword"
         self.create_account_button_selector = "input[type='Submit']"
-        self.page_url_after_creating = "/favorite/projects"
 
     def fill_user_data(self, username, password):
         self.actions.input_text(self.username_selector, username)
@@ -55,8 +54,6 @@ class SetupUser(BasePage):
 
     def create_admin(self):
         self.actions.click_button(self.create_account_button_selector)
-        self.actions.wait_for_page_load()
-        self.actions.check_url(self.page_url_after_creating)
 
 
 class SetupPage(BasePage):
@@ -67,6 +64,7 @@ class SetupPage(BasePage):
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)
         self.setup_user = SetupUser(self.page)
+        self.page_url_after_creating = "/favorite/projects"
 
     def set_up(self, username="admin", password="admin"):
         self.actions.navigate(self.page_url)
@@ -75,10 +73,12 @@ class SetupPage(BasePage):
         self.loading.wait_loading()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
-        time.sleep(120)
+        time.sleep(120)  # меньше fail
         self.actions.check_url(self.agreement.page_url)
         self.agreement.check_in_box()
         self.agreement.continue_agreement()
         self.actions.wait_for_page_load()
         self.setup_user.fill_user_data(username, password)
         self.setup_user.create_admin()
+        self.loading.wait_loading()
+        self.actions.check_url(self.page_url_after_creating)
