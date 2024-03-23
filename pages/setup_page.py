@@ -19,7 +19,7 @@ class Loading(BasePage):
         super().__init__(page)
 
     def wait_loading(self):
-        time.sleep(30)
+        time.sleep(60)
         self.actions.wait_for_page_load()
 
 
@@ -72,8 +72,6 @@ class SetupPage(BasePage):
     def set_up(self, username="admin", password="admin"):
         self.actions.navigate(self.page_url)
         self.actions.wait_for_page_load()
-        self.first_starts_window.proceed_step()
-        self.loading.wait_loading()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
         self.first_starts_window.proceed_step()
