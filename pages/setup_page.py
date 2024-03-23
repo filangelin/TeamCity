@@ -19,7 +19,7 @@ class Loading(BasePage):
         super().__init__(page)
 
     def wait_loading(self):
-        time.sleep(30)
+        time.sleep(15)
         self.actions.wait_for_page_load()
 
 
@@ -35,7 +35,7 @@ class Agreement(BasePage):
         self.actions.check_in_box(self.checkbox_selector)
 
     def continue_agreement(self):
-        self.actions.wait_for_selector(button_selectortimeout=120000)
+        self.actions.wait_for_selector(self.continue_button_selector, timeout=120000)
         self.actions.click_button(self.continue_button_selector)
         self.actions.wait_for_page_load()
 
