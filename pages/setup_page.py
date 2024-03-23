@@ -1,5 +1,5 @@
-import time
 
+from enums.host import BASE_URL
 from pages.base_page import BasePage
 
 
@@ -9,7 +9,7 @@ class FirstStartsWindow(BasePage):
         self.proceed_button_selector = "input#proceedButton"
 
     def proceed_step(self):
-        self.actions.wait_for_selector(self.proceed_button_selector)
+        self.actions.wait_for_page_load(timeout=3000)
         self.actions.is_button_active(self.proceed_button_selector)
         self.actions.click_button(self.proceed_button_selector)
 
@@ -26,16 +26,13 @@ class Loading(BasePage):
 class Agreement(BasePage):
     def __init__(self, page):
         super().__init__(page)
+        self.page_url = f"{BASE_URL}/showAgreement.html"
         self.checkbox_selector = "input#accept"
         self.continue_button_selector = "checkbox_selector"
 
     def check_in_box(self):
-        self.actions.click_button("input#proceedButton")
-        time.sleep(30)
-        self.actions.check_url("http://localhost:8111/mnt")
-        self.actions.click_button("input#proceedButton")
-        self.actions.is_button_active(self.checkbox_selector, 30000)
-        self.actions.click_button(self.checkbox_selector)
+        self.actions.wait_for_selector(self.checkbox_selector)
+        self.actions.check_in_box(self.checkbox_selector)
 
     def continue_agreement(self):
         self.actions.is_button_active(self.continue_button_selector)
@@ -50,6 +47,7 @@ class SetupUser(BasePage):
         self.password_selector = "input#password1"
         self.password_confirm_selector = "input#retypedPassword"
         self.create_account_button_selector = "input[type='Submit']"
+        self.page_url_after_creating = "/favorite/projects"
 
     def fill_user_data(self, username, password):
         self.actions.input_text(self.username_selector, username)
@@ -58,11 +56,14 @@ class SetupUser(BasePage):
 
     def create_admin(self):
         self.actions.click_button(self.create_account_button_selector)
+        self.actions.wait_for_page_load()
+        self.actions.wait_for_url_change(self.page_url_after_creating)
 
 
 class SetupPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
+        self.page_url = f"{BASE_URL}/mnt"
         self.first_starts_window = FirstStartsWindow(self.page)
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)
@@ -73,7 +74,9 @@ class SetupPage(BasePage):
         self.actions.wait_for_page_load()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
+        self.first_starts_window.proceed_step()
         self.agreement.check_in_box()
+        self.actions.check_url(self.agreement.page_url)
         self.agreement.continue_agreement()
         self.actions.wait_for_page_load()
         self.setup_user.fill_user_data(username, password)
