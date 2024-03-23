@@ -19,7 +19,7 @@ class Loading(BasePage):
         super().__init__(page)
 
     def wait_loading(self):
-        time.sleep(5)
+        time.sleep(30)
         self.actions.wait_for_page_load()
 
 
