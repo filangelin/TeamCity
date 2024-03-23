@@ -18,9 +18,6 @@ class Loading(BasePage):
         self.proceed_db_button_selector = "input#proceedButton"
 
     def wait_loading(self):
-        self.actions.wait_for_selector(self.proceed_db_button_selector)
-        self.actions.is_button_active(self.proceed_db_button_selector)
-        self.actions.click_button(self.proceed_db_button_selector)
         self.actions.wait_for_page_load(timeout=360000)
 
 
@@ -31,7 +28,7 @@ class Agreement(BasePage):
         self.continue_button_selector = "checkbox_selector"
 
     def ckeck_in_box(self):
-        self.actions.wait_for_selector(self.checkbox_selector)
+        self.actions.check_url("hhh")
         self.actions.is_button_active(self.checkbox_selector)
         self.actions.click_button(self.checkbox_selector)
 
