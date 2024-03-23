@@ -18,7 +18,7 @@ class Loading(BasePage):
         self.proceed_db_button_selector = "input#proceedButton"
 
     def wait_loading(self):
-        self.actions.wait_for_page_load(timeout=120000)
+        self.actions.wait_for_page_load(timeout=360000)
 
 
 class Agreement(BasePage):
