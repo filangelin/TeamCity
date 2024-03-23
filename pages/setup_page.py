@@ -28,7 +28,7 @@ class Agreement(BasePage):
         self.continue_button_selector = "checkbox_selector"
 
     def check_in_box(self):
-        self.actions.is_button_active(self.checkbox_selector)
+        self.actions.is_button_active(self.checkbox_selector, timeout=120000)
         self.actions.click_button(self.checkbox_selector)
 
     def continue_agreement(self):
