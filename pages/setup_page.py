@@ -77,6 +77,7 @@ class SetupPage(BasePage):
         self.loading.wait_loading()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
+        self.actions.check_url(self.agreement.page_url)
         self.agreement.check_in_box()
         self.agreement.continue_agreement()
         self.actions.wait_for_page_load()
