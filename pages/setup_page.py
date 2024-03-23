@@ -55,8 +55,7 @@ class SetupUser(BasePage):
 
     def create_admin(self):
         self.actions.click_button(self.create_account_button_selector)
-        self.actions.wait_for_page_load()
-        self.actions.wait_for_url_change(self.page_url_after_creating)
+        self.actions.wait_for_url_change(self.page_url_after_creating, timeout=120000)
 
 
 class SetupPage(BasePage):

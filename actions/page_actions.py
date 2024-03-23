@@ -14,9 +14,9 @@ class PageAction:
         with allure.step(f"Проверка URL: ожидаемый - {expected_url}"):
             expect(self.page).to_have_url(expected_url)
 
-    def wait_for_url_change(self, expected_url):
+    def wait_for_url_change(self, expected_url, timeout=3000):
         with allure.step(f"Ожидание изменения URL на {expected_url}"):
-            self.page.wait_for_url(expected_url)
+            self.page.wait_for_url(expected_url, timeout=timeout)
 
     def wait_for_page_load(self, timeout=3000):
         with allure.step("Ожидание загрузки страницы"):
