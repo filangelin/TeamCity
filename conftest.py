@@ -86,3 +86,9 @@ def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
     yield page
     BrowserSetup.teardown(context, browser, playwright)
+
+
+def browser_for_setup():
+    playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
+    yield page
+    BrowserSetup.teardown(context, browser, playwright)

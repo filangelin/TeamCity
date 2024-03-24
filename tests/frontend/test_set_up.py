@@ -1,9 +1,6 @@
-import pytest
-
 from pages.setup_page import SetupPage
 
 
-@pytest.mark.parametrize("browser", ['chromium'], indirect=True)
-def test_set_up(browser):
-    page = SetupPage(browser)
+def test_set_up(browser_for_setup):
+    page = SetupPage(browser_for_setup)
     page.set_up()
