@@ -17,5 +17,5 @@ class AdminCreds:
     """
     Креды админа.
     """
-    USERNAME = os.getenv('ADMIN_TOKEN')
+    USERNAME = os.getenv('ADMIN_USERNAME')
     PASSWORD = os.getenv('ADMIN_PASSWORD')
