@@ -95,4 +95,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest -v tests/backend tests/frontend -ignore=test/frontend/test_set_up.py
+          pytest -v -ignore=test/frontend/test_set_up.py
