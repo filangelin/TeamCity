@@ -1,5 +1,6 @@
 import pytest
 import requests
+import time
 
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
@@ -9,6 +10,11 @@ from utils.browser_setup import BrowserSetup
 from enums.roles import Roles
 from resources.user_creds import SuperAdminCreds
 from api.api_manager import ApiManager
+
+
+@pytest.fixture(autouse=True)
+def delay_between_tests():
+    time.sleep(5)
 
 
 @pytest.fixture
@@ -68,6 +74,7 @@ def user_create(user_session, super_admin):
     for username in created_users_pool:
         super_admin.api_object.user_api.delete_user(username)
 
+
 @pytest.mark.teardown_required
 @pytest.fixture(params=[Roles.SYSTEM_ADMIN, Roles.PROJECT_ADMIN, Roles.AGENT_MANAGER])
 def prepared_project(request, user_create, project_data_body):
@@ -86,6 +93,7 @@ def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
     yield page
     BrowserSetup.teardown(context, browser, playwright)
+
 
 @pytest.fixture()
 def browser_for_setup():
