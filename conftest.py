@@ -95,6 +95,8 @@ def browser(request):
     BrowserSetup.teardown(context, browser, playwright)
 
 
-
+@pytest.fixture
 def browser_for_setup(request):
-    playwright, browser, context, page = BrowserSetup.setup()
+    playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
+    yield page
+    BrowserSetup.teardown(context, browser, playwright)
