@@ -49,7 +49,7 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
             super_admin.api_object.project_api.clean_up_project(project_id)
 
 
-@pytest.fixture()
+@pytest.fixture
 def super_admin(user_session):
     new_session = user_session()
     super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
@@ -88,15 +88,13 @@ def prepared_project(request, user_create, project_data_body):
     return project_data, user
 
 
-@pytest.fixture(params=BROWSERS)
+@pytest.fixture(scope='module', params=BROWSERS)
 def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
     yield page
     BrowserSetup.teardown(context, browser, playwright)
 
 
-@pytest.fixture()
-def browser_for_setup():
-    playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
-    yield page
-    BrowserSetup.teardown(context, browser, playwright)
+
+def browser_for_setup(request):
+    playwright, browser, context, page = BrowserSetup.setup()
