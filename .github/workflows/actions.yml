@@ -75,6 +75,7 @@ jobs:
       - name: Run Set Up Test
         run: |
           playwright install
+          playwright install-deps
           pytest -v tests/frontend/test_set_up.py
 
       - name: Retrieve Super User Token
@@ -100,7 +101,7 @@ jobs:
 
       - name: Run api tests
         run: |
-          pytest --reruns 2 --reruns-delay 5 -v tests/backend
+          pytest --reruns 2 --reruns-delay 5 -v tests/backend -n 3
 
       - name: Run ui tests
         run: |
