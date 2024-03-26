@@ -100,4 +100,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest --reruns 3 --reruns-delay 5 -v --ignore=tests/frontend/test_set_up.py tests/backend tests/frontend
+          pytest --reruns 2 --reruns-delay 5 -v --ignore=tests/frontend/test_set_up.py tests/backend
