@@ -90,7 +90,7 @@ def prepared_project(request, user_create, project_data_body):
     return project_data, user
 
 
-@pytest.fixture(scope='module', params=BROWSERS)
+@pytest.fixture(params=BROWSERS)
 def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
     yield page
