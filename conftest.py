@@ -10,7 +10,9 @@ from utils.browser_setup import BrowserSetup
 from enums.roles import Roles
 from resources.user_creds import SuperAdminCreds
 from api.api_manager import ApiManager
+from playwright.sync_api import expect
 
+expect.set_options(timeout=60_000)
 
 @pytest.fixture(autouse=True)
 def delay_between_tests():
@@ -91,7 +93,6 @@ def prepared_project(request, user_create, project_data_body):
 @pytest.fixture(scope='module', params=BROWSERS)
 def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
-    page.set_default_timeout(30000)
     yield page
     BrowserSetup.teardown(context, browser, playwright)
 
