@@ -91,6 +91,7 @@ def prepared_project(request, user_create, project_data_body):
 @pytest.fixture(scope='module', params=BROWSERS)
 def browser(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
+    page.set_default_timeout(30000)
     yield page
     BrowserSetup.teardown(context, browser, playwright)
 
