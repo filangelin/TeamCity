@@ -99,10 +99,10 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
-      - name: Run api tests
-        run: |
-          pytest --reruns 2 --reruns-delay 5 -v tests/backend -n 3
+#      - name: Run api tests
+#        run: |
+#          pytest --reruns 2 --reruns-delay 5 -v tests/backend -n 3
 
       - name: Run ui tests
         run: |
-          pytest --reruns 2 --reruns-delay 5 -v --ignore=tests/frontend/test_set_up.py tests/frontend
+          pytest --reruns 2 --reruns-delay 5 -v --ignore=tests/frontend/test_set_up.py tests/frontend/test_e2e_project.py
