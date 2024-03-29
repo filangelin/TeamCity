@@ -2,17 +2,19 @@ import pytest
 import requests
 import time
 
+from api.auth_api import AuthAPI
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
 from entities.user import User, Role
 from enums.browser import BROWSERS
 from utils.browser_setup import BrowserSetup
 from enums.roles import Roles
-from resources.user_creds import SuperAdminCreds
+from resources.user_creds import SuperAdminCreds, AdminCreds
 from api.api_manager import ApiManager
 from playwright.sync_api import expect
 
 expect.set_options(timeout=60_000)
+
 
 @pytest.fixture(autouse=True)
 def delay_between_tests():
@@ -102,3 +104,19 @@ def browser_for_setup(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
     yield page
     BrowserSetup.teardown(context, browser, playwright)
+
+
+import time
+
+TOKEN_EXPIRATION = 60
+last_token_time = None
+
+
+@pytest.fixture(autouse=True)
+def refresh_token():
+    global csrf_token, last_token_time
+    if last_token_time is None or time.time() - last_token_time > TOKEN_EXPIRATION:
+        new_token = AuthAPI.auth_and_get_csrf(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+        if new_token:
+            token = new_token
+            last_token_time = time.time()
