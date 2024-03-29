@@ -53,7 +53,6 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
             super_admin.api_object.project_api.clean_up_project(project_id)
 
 
-@pytest.fixture(autouse=True)
 @pytest.mark.repeat(60)
 def super_admin(user_session):
     new_session = user_session()
