@@ -53,7 +53,8 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
             super_admin.api_object.project_api.clean_up_project(project_id)
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
+@pytest.mark.repeat(60)
 def super_admin(user_session):
     new_session = user_session()
     super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
@@ -104,19 +105,3 @@ def browser_for_setup(request):
     playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
     yield page
     BrowserSetup.teardown(context, browser, playwright)
-
-
-import time
-
-TOKEN_EXPIRATION = 60
-last_token_time = None
-
-
-@pytest.fixture(autouse=True)
-def refresh_token():
-    global csrf_token, last_token_time
-    if last_token_time is None or time.time() - last_token_time > TOKEN_EXPIRATION:
-        new_token = AuthAPI.auth_and_get_csrf(AdminCreds.USERNAME, AdminCreds.PASSWORD)
-        if new_token:
-            token = new_token
-            last_token_time = time.time()
