@@ -21,7 +21,7 @@ class Loading(BasePage):
         self.loader = ".stage-status__icon"
 
     def wait_loading(self):
-        self.actions.is_element_visible(self.loader)
+        self.actions.is_element_presents(self.loader)
         self.actions.wait_for_disappear_selector(self.loader, timeout=60000)
 
 

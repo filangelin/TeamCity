@@ -46,7 +46,7 @@ class PageAction:
         with allure.step(f"Ожидаем появления селектора {selector}"):
             self.page.wait_for_selector(selector, state='visible', timeout=timeout)
 
-    def wait_for__disappear_selector(self, selector):
+    def wait_for_disappear_selector(self, selector):
         with allure.step(f"Ожидаем исчезновения селектора {selector}"):
             self.page.wait_for_selector(selector, state='detached')
 
