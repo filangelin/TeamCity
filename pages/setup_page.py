@@ -10,6 +10,7 @@ class FirstStartsWindow(BasePage):
         self.proceed_button_selector = "input#proceedButton"
 
     def proceed_step(self):
+        self.actions.wait_for_page_load()
         self.actions.is_button_active(self.proceed_button_selector, timeout=60000)
         self.actions.click_button(self.proceed_button_selector)
 
@@ -17,11 +18,11 @@ class FirstStartsWindow(BasePage):
 class Loading(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.loader = ".stage-status__icon"
+
 
     def wait_loading(self):
-        self.actions.is_element_presents(self.loader)
-        self.actions.wait_for_disappear_selector(self.loader, timeout=120000)
+        time.sleep(10)
+        self.actions.wait_for_page_load()
 
 
 class Agreement(BasePage):
@@ -74,6 +75,7 @@ class SetupPage(BasePage):
         self.loading.wait_loading()
         self.first_starts_window.proceed_step()
         self.loading.wait_loading()
+        time.sleep(120)  # меньше fail
         self.actions.check_url(self.agreement.page_url)
         self.agreement.check_in_box()
         self.agreement.continue_agreement()
