@@ -54,6 +54,8 @@ class ProjectCreationPage(BasePage):
         self.menu_list_create = MenuListCreateFragment(page)
         self.create_form_container = CreateFormContainerFragment(page)
         self.message_project_created = "#message_projectCreated"
+        self.error_name_selector = '#errorName'
+        self.error_id_selector = '#errorExternalId'
 
     def go_to_creation_page(self):
         with allure.step("Переход на страницу создания проекта"):
@@ -67,3 +69,27 @@ class ProjectCreationPage(BasePage):
         self.create_form_container.click_create_button()
         self.page_url = (f'/admin/editProject.html?projectId={project_id}')
         self.actions.wait_for_url_change(self.page_url)
+
+    def create_project_with_empty_name(self, project_id):
+        self.go_to_creation_page()
+        self.menu_list_create.click_create_manually()
+        self.create_form_container.input_project_details('', project_id, '')
+        self.create_form_container.click_create_button()
+        self.actions.assert_text_in_element(self.error_name_selector, 'Project name is empty')
+
+    def create_project_with_empty_id(self, project_name):
+        self.go_to_creation_page()
+        self.menu_list_create.click_create_manually()
+        self.create_form_container.input_project_details(project_name, '', '')
+        self.create_form_container.click_create_button()
+        self.actions.assert_text_in_element(self.error_id_selector, 'Project ID must not be empty.')
+
+    def create_project_with_nonlatin_id(self, project_name, project_id):
+        self.go_to_creation_page()
+        self.menu_list_create.click_create_manually()
+        self.create_form_container.input_project_details(project_name, project_id, '')
+        self.create_form_container.click_create_button()
+        self.actions.assert_text_in_element(self.error_id_selector,
+                                            f"""Project ID \"{project_id}\" is invalid: contains non-latin letter 
+                                            '{project_id[0]}'. ID should start with a latin letter and contain only 
+                                            latin letters, digits and underscores (at most 225 characters).""")

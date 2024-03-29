@@ -56,7 +56,7 @@ class PageAction:
 
     def assert_text_in_element(self, selector, text):
         with allure.step(f"Проверка наличия текста '{text}'в элементе {selector}"):
-            expect(self.page).locator(selector).to_contain_text(text)
+            expect(self.page.locator(selector)).to_have_text(text)
 
     def assert_element_attribute(self, selector, attribute, value):
         with allure.step(f"Проверка значения '{value}' атрибута '{attribute}' элемента {selector}"):

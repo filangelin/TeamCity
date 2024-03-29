@@ -64,3 +64,39 @@ def test_delete_project(browser, project_data_body, super_admin):
         get_project = super_admin.api_object.project_api.get_project().json()
         project_ids = [project.get('id') for project in get_project.get('project')]
         assert project_data.id not in project_ids, "Project found, but expected to be deleted"
+
+
+def test_create_project_with_empty_name(browser, project_data_body, super_admin):
+    with allure.step("Подготовка данных"):
+        project_data = project_data_body()
+        project_id = project_data.id
+        project_name = project_data.name
+    with allure.step("Авторизация пользователя"):
+        login_browser = LoginPage(browser)
+        login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+    with allure.step("Создание проекта c пустым именем"):
+        project_creation_browser = ProjectCreationPage(browser)
+        project_creation_browser.create_project_with_empty_name(project_id)
+
+
+def test_create_project_with_empty_id(browser, project_data_body, super_admin):
+    with allure.step("Подготовка данных"):
+        project_data = project_data_body()
+        project_id = project_data.id
+        project_name = project_data.name
+    with allure.step("Авторизация пользователя"):
+        login_browser = LoginPage(browser)
+        login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+    with allure.step("Создание проекта c пустым id"):
+        project_creation_browser = ProjectCreationPage(browser)
+        project_creation_browser.create_project_with_empty_id(project_name)
+
+
+def test_create_project_with_nonlatin_id(browser, project_data_body, super_admin):
+    with allure.step("Авторизация пользователя"):
+        login_browser = LoginPage(browser)
+        login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+    with allure.step("Создание проекта c id символами нелатинского алфавита"):
+        project_creation_browser = ProjectCreationPage(browser)
+        project_creation_browser.create_project_with_nonlatin_id('проект', 'айди')
+
