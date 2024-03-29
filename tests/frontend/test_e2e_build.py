@@ -72,3 +72,33 @@ def test_delete_build(browser, project_data_body, super_admin):
 
     with allure.step('Проверка отсутствия удаленного билда'):
         super_admin.api_object.build_api.check_build(build_data.id, expected_status=HTTPStatus.NOT_FOUND)
+
+
+def test_create_build_with_empty_name(browser, project_data_body, super_admin):
+    with allure.step("Подготовка данных"):
+        project_data = project_data_body()
+        build_data = BuildData.create_build_data(project_data.id)
+        build_id = build_data.id
+    with allure.step("Авторизация пользователя"):
+        login_browser = LoginPage(browser)
+        login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+    with allure.step('Создание проекта'):
+        super_admin.api_object.project_api.create_project(project_data.model_dump())
+    with allure.step('Создание билда c пустым именем'):
+        build_creation_browser = BuildCreationPage(browser, project_data.id)
+        build_creation_browser.create_build_with_empty_name('', build_id)
+
+
+def test_create_build_with_empty_id(browser, project_data_body, super_admin):
+    with allure.step("Подготовка данных"):
+        project_data = project_data_body()
+        build_data = BuildData.create_build_data(project_data.id)
+        build_name = build_data.name
+    with allure.step("Авторизация пользователя"):
+        login_browser = LoginPage(browser)
+        login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
+    with allure.step('Создание проекта'):
+        super_admin.api_object.project_api.create_project(project_data.model_dump())
+    with allure.step('Создание билда c пустым id'):
+        build_creation_browser = BuildCreationPage(browser, project_data.id)
+        build_creation_browser.create_build_with_empty_id(build_name, '')

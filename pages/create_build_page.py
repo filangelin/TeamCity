@@ -5,6 +5,8 @@ from pages.base_page import BasePage
 class BuildCreationPage(BasePage):
     def __init__(self, page, project_id):
         super().__init__(page)
+        self.error_id_selector = '#error_buildTypeExternalId'
+        self.error_name_selector = '#error_buildTypeName'
         self.page_url = (f'/admin/editProject.html?projectId={project_id}')
         self.go_to_build_button = 'span.icon_before >> text="Create build configuration"'
         self.build_name_selector = "input#buildTypeName"
@@ -26,13 +28,25 @@ class BuildCreationPage(BasePage):
             self.actions.input_text(self.build_id_selector, build_id)
             self.actions.input_text(self.build_description_selector, description)
 
-    def click_create_button(self, build_id):
+    def click_create_button(self):
         with allure.step("Нажатие кнопки создания билда"):
             self.actions.click_button(self.create_build_button)
 
     def create_ui_build(self, name, build_id, description, project_id):
         self.go_to_addition_build_page()
         self.input_build_details(name, build_id, description)
-        self.click_create_button(build_id)
+        self.click_create_button()
         self.page_url = self.created_build_page.format(build_id=build_id, project_id=project_id)
         self.actions.wait_for_url_change(self.page_url)
+
+    def create_build_with_empty_name(self, name, build_id):
+        self.go_to_addition_build_page()
+        self.input_build_details(name, build_id, '')
+        self.click_create_button()
+        self.actions.assert_text_in_element(self.error_name_selector, 'Name must not be empty')
+
+    def create_build_with_empty_id(self, name, build_id):
+        self.go_to_addition_build_page()
+        self.input_build_details(name, build_id, '')
+        self.click_create_button()
+        self.actions.assert_text_in_element(self.error_id_selector, 'The ID field must not be empty.')
