@@ -35,7 +35,7 @@ def test_create_build(browser, project_data_body, super_admin):
         super_admin.api_object.project_api.create_project(project_data.model_dump())
     with allure.step('Создание билда'):
         build_creation_browser = BuildCreationPage(browser, project_data.id)
-        build_creation_browser.create_ui_build(build_name, build_id, f'Описание билда {build_name}')
+        build_creation_browser.create_ui_build(build_name, build_id, f'Описание билда {build_name}', project_data.id)
 
     with (allure.step('Проверка созданного билда')):
         check_build = super_admin.api_object.build_api.check_build(build_data.id).text
