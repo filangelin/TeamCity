@@ -10,7 +10,6 @@ class FirstStartsWindow(BasePage):
         self.proceed_button_selector = "input#proceedButton"
 
     def proceed_step(self):
-        self.actions.wait_for_page_load()
         self.actions.is_button_active(self.proceed_button_selector, timeout=60000)
         self.actions.click_button(self.proceed_button_selector)
 
@@ -22,7 +21,7 @@ class Loading(BasePage):
 
     def wait_loading(self):
         self.actions.is_element_presents(self.loader)
-        self.actions.wait_for_disappear_selector(self.loader, timeout=60000)
+        self.actions.wait_for_disappear_selector(self.loader, timeout=120000)
 
 
 class Agreement(BasePage):
