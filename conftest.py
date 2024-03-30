@@ -53,12 +53,13 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
             super_admin.api_object.project_api.clean_up_project(project_id)
 
 @pytest.fixture
-@pytest.mark.repeat(60)
 def super_admin(user_session):
-    new_session = user_session()
-    super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
-    super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
-    return super_admin
+    while True:
+        new_session = user_session()
+        super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
+        super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
+        yield super_admin
+        time.sleep(60)
 
 
 @pytest.fixture
