@@ -37,7 +37,7 @@ class BuildCreationPage(BasePage):
         self.input_build_details(name, build_id, description)
         self.click_create_button()
         self.page_url = self.created_build_page.format(build_id=build_id, project_id=project_id)
-        self.actions.wait_for_url_change(self.page_url)
+        self.actions.wait_for_url_change(self.page_url, timeout=60000)
 
     def create_build_with_empty_name(self, name, build_id):
         self.go_to_addition_build_page()

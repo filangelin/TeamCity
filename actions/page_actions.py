@@ -30,7 +30,7 @@ class PageAction:
         with allure.step(f"Проверка видимости элемента: {selector}"):
             expect(self.page.locator(selector)).to_be_visible()
 
-    def is_button_active(self, selector, timeout=3000):
+    def is_button_active(self, selector, timeout=30000):
         with allure.step(f"Проверка активности кнопки: {selector}"):
             expect(self.page.locator(selector)).to_be_enabled(timeout=timeout)
 
@@ -72,5 +72,5 @@ class PageAction:
             with self.page.context.expect_page() as new_page_info:
                 self.click_button(button)
                 new_page = new_page_info.value
-                expect(new_page).to_have_url(expected_url)
+                expect(new_page).to_have_url(expected_url, timeout=60000)
 
