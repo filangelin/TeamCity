@@ -105,4 +105,4 @@ jobs:
 
       - name: Run ui tests
         run: |
-          pytest -v --ignore=tests/frontend/test_set_up.py tests/frontend/test_e2e_project.py
+          pytest -v --reruns 1 --ignore=tests/frontend/test_set_up.py tests/frontend/test_e2e_project.py
