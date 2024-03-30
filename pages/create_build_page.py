@@ -9,7 +9,7 @@ class BuildCreationPage(BasePage):
         self.error_name_selector = '#error_buildTypeName'
         self.page_url = (f'/admin/editProject.html?projectId={project_id}')
         self.go_to_build_button = "xpath=//*[text()='Create build configuration']"
-        self.build_name_selector = "input#buildTypeName"
+        self.build_name_selector = "#buildTypeName"
         self.build_id_selector = "input#buildTypeExternalId"
         self.build_description_selector = "input#description"
         self.create_build_button = "input[value=Create]"
@@ -24,6 +24,7 @@ class BuildCreationPage(BasePage):
     def input_build_details(self, name, build_id, description):
         with allure.step("Ввод данных для создания билда"):
             self.actions.click_button(self.create_manually_selector)
+            self.actions.wait_for_selector(self.build_name_selector)
             self.actions.input_text(self.build_name_selector, name)
             self.actions.input_text(self.build_id_selector, build_id)
             self.actions.input_text(self.build_description_selector, description)
