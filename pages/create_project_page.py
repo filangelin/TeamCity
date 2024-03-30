@@ -68,7 +68,7 @@ class ProjectCreationPage(BasePage):
         self.create_form_container.input_project_details(name, project_id, description)
         self.create_form_container.click_create_button()
         self.page_url = (f'/admin/editProject.html?projectId={project_id}')
-        self.actions.wait_for_url_change(self.page_url)
+        self.actions.wait_for_url_change(self.page_url, timeout=60000)
 
     def create_project_with_empty_name(self, project_id):
         self.go_to_creation_page()

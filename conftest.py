@@ -53,18 +53,14 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
             super_admin.api_object.project_api.clean_up_project(project_id)
 
 
-import asyncio
-
-
 @pytest.fixture
-async def super_admin(user_session):
+def super_admin(user_session):
     while True:
         new_session = user_session()
         super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
-        super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
+        response = super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
         yield super_admin
-        # Подождем одну минуту перед обновлением CSRF-токена
-        await asyncio.sleep(60)
+        time.sleep(60)
 
 
 @pytest.fixture
