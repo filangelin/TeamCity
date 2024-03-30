@@ -27,7 +27,7 @@ jobs:
       - name: Create Docker Network
         run: |
           docker network create teamcity-network
-          
+
 
       - name: Run TeamCity Server Container
         run: |
@@ -99,10 +99,10 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
-#      - name: Run api tests
-#        run: |
-#          pytest --reruns 2 --reruns-delay 5 -v tests/backend -n 3
+      - name: Run api tests
+        run: |
+          pytest -v --reruns 2 tests/backend -n 3
 
       - name: Run ui tests
         run: |
-          pytest -v --reruns 1 --ignore=tests/frontend/test_set_up.py tests/frontend/test_e2e_project.py
+          pytest -v --reruns 2 --ignore=tests/frontend/test_set_up.py tests/frontend

@@ -41,4 +41,4 @@ class ProjectManagementPage(BasePage):
         self.go_to_project_management_page(project_id)
         self.menu_list_actions.click_on_delete_project()
         self.page_url = PROJECT_MANAGEMENT_ROOT
-        self.actions.wait_for_url_change(self.page_url)
+        self.actions.wait_for_url_change(self.page_url, timeout=60000)
