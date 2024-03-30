@@ -14,7 +14,7 @@ class BuildCreationPage(BasePage):
         self.build_description_selector = "input#description"
         self.create_build_button = "input[value=Create]"
         self.created_build_page = "/admin/editVcsRoot.html?action=addVcsRoot&editingScope=buildType%3A{build_id}&cameFromUrl=%2Fadmin%2FeditBuildTypeVcsRoots.html%3Finit%3D1%26id%3DbuildType%3A{build_id}%26cameFromUrl%3D%252Fadmin%252FeditProject.html%253Finit%253D1%2526projectId%253D{project_id}&cameFromTitle=Version%20Control%20Settings&showSkip=true"
-
+        self.create_manually_selector = "xpath=//*[text()=' Manually']"
     def go_to_addition_build_page(self):
         with allure.step("Переход на страницу для создания билда"):
             self.actions.navigate(self.page_url)
@@ -23,7 +23,7 @@ class BuildCreationPage(BasePage):
 
     def input_build_details(self, name, build_id, description):
         with allure.step("Ввод данных для создания билда"):
-            self.actions.wait_for_selector(self.build_name_selector)
+            self.actions.click_button(self.create_manually_selector)
             self.actions.input_text(self.build_name_selector, name)
             self.actions.input_text(self.build_id_selector, build_id)
             self.actions.input_text(self.build_description_selector, description)
