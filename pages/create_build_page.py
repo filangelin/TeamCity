@@ -23,7 +23,6 @@ class BuildCreationPage(BasePage):
 
     def input_build_details(self, name, build_id, description):
         with allure.step("Ввод данных для создания билда"):
-            self.actions.wait_for_selector(self.build_name_selector)
             self.actions.input_text(self.build_name_selector, name)
             self.actions.input_text(self.build_id_selector, build_id)
             self.actions.input_text(self.build_description_selector, description)

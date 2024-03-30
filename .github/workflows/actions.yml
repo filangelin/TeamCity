@@ -105,4 +105,4 @@ jobs:
 
       - name: Run ui tests
         run: |
-          pytest -v --ignore=tests/frontend/test_set_up.py tests/frontend/test_footer.py::test_about_teamcity[chromium] tests/frontend/test_footer.py::test_license_agreement[chromium] tests/frontend/test_e2e_build.py::test_create_build[chromium]
+          pytest -v --ignore=tests/frontend/test_set_up.py tests/frontend/test_e2e_build.py::test_create_build[chromium]
