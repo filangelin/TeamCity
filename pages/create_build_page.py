@@ -8,7 +8,7 @@ class BuildCreationPage(BasePage):
         self.error_id_selector = '#error_buildTypeExternalId'
         self.error_name_selector = '#error_buildTypeName'
         self.page_url = (f'/admin/editProject.html?projectId={project_id}')
-        self.go_to_build_button = 'span.icon_before >> text="Create build configuration"'
+        self.go_to_build_button = "xpath=//*[text()='Create build configuration']"
         self.build_name_selector = "input#buildTypeName"
         self.build_id_selector = "input#buildTypeExternalId"
         self.build_description_selector = "input#description"
