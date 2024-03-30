@@ -12,9 +12,7 @@ class Footer:
         self.license_agreement_url = f'{BASE_URL}/showAgreement.html'
 
     def go_to_about_teamcity(self):
-        self.actions.is_button_active(self.about_teamcity)
         self.actions.check_url_in_new_tab(self.about_teamcity, self.about_teamcity_url)
 
     def go_to_license_agreement(self):
-        self.actions.is_button_active(self.license_agreement)
         self.actions.check_url_in_new_tab(self.license_agreement, self.license_agreement_url)
