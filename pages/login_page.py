@@ -30,5 +30,5 @@ class LoginPage(BasePage):
         self.go_to_login_page()
         self.input_login_details(username, password)
         self.click_login_button()
-        self.page_url = ('/favorite/projects?mode=builds')
+        self.page_url = ('/favorite/projects')
         self.actions.wait_for_url_change(self.page_url, timeout=60000)
