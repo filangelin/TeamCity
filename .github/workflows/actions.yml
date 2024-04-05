@@ -2,13 +2,34 @@ name: Run System Tests
 
 on:
   push:
-    branches: [ "main", "final-version", "Configure-CI", "hometask-3" ]
+    branches: [ "main", "final-version", "Configure-CI", "hometask-4" ]
   pull_request:
-    branches: [ "main", "final-version", "Configure-CI", "hometask-3" ]
+    branches: [ "main", "final-version", "Configure-CI", "hometask-4" ]
   workflow_dispatch:
 
 jobs:
-  run-tests:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.14
+
+      - name: Install flake8
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      - name: Run flake8
+        run: flake8 .
+
+  tests:
+    needs: [lint]
     runs-on: ubuntu-latest
 
     steps:
@@ -71,7 +92,6 @@ jobs:
           sudo apt-get install -y woff2 libwoff-dev
           sudo apt-get install -y libvpx7 libevent-2.1-7 libopus0 libharfbuzz-icu0 libgstreamer-plugins-base1.0-0 libhyphen0
 
-
       - name: Run Set Up Test
         run: |
           playwright install
@@ -99,10 +119,55 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
-      - name: Run api tests
+      - name: Run tests
         run: |
-          pytest -v --reruns 2 tests/backend -n 3
+          pytest -v --alluredir=allure-results --reruns 2 --ignore=tests/frontend/test_set_up.py tests/backend
 
-      - name: Run ui tests
-        run: |
-          pytest -v --reruns 2 --ignore=tests/frontend/test_set_up.py
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Results
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+#      - name: Load test report history
+#        uses: actions/checkout@v2
+#        if: always()
+#        continue-on-error: true
+#        with:
+#          ref: gh-pages
+#          path: gh-pages
+#
+#      - name: Install Allure
+#        run: |
+#          wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
+#          sudo tar -zxvf allure-2.13.8.tgz -C /opt/
+#          echo "PATH=$PATH:/opt/allure-2.13.8/bin/" >> $GITHUB_ENV
+#
+#      - name: Generate Allure report
+#        run: allure generate allure-results -o allure-report --clean
+#        if: always()
+#
+#      - name: Publish Allure report to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: allure-report
+
