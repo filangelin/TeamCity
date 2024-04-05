@@ -148,19 +148,30 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
-      - name: Generate Swagger
-        uses: Legion2/swagger-ui-action@v1.2.0
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          spec-file: swagger-coverage-config-teamcity.json
-          output: swagger-coverage-output
-          version: '2.0'
+          node-version: '16'
 
-      - name: Deploy report to Github Pages
+      - name: Check Node.js and npm versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Install swagger-coverage
+        run: |
+          npm install -g swagger-coverage
+
+      - name: Generate swagger-coverage report
+        run: |
+          swagger-coverage -s http://localhost:8111/app/rest/swagger.json -t swagger-coverage-report/swagger-coverage-report.json
+
+      - name: Deploy swagger-coverage report to Github Pages
         uses: peaceiris/actions-gh-pages@v2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: swagger-ui
+          PUBLISH_DIR: swagger-coverage-report
 #      - name: Load test report history
 #        uses: actions/checkout@v2
 #        if: always()

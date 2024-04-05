@@ -1,8 +1,6 @@
 import pytest
 import requests
 import time
-from swagger_coverage_py.reporter import CoverageReporter
-from requests.auth import HTTPBasicAuth
 
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
@@ -15,17 +13,6 @@ from api.api_manager import ApiManager
 from playwright.sync_api import expect
 
 expect.set_options(timeout=60_000)
-
-
-@pytest.fixture(scope="session", autouse=True)
-def setup_swagger_coverage():
-    reporter = CoverageReporter(api_name="teamcity", host="http://localhost:8111")
-    reporter.cleanup_input_files()
-    reporter.setup(path_to_swagger_json="/app/rest/swagger.json", auth=HTTPBasicAuth(SuperAdminCreds.USERNAME,
-                                                                                     SuperAdminCreds.PASSWORD))
-
-    yield
-    reporter.generate_report()
 
 
 @pytest.fixture(autouse=True)
