@@ -131,11 +131,13 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+
       - name: Install Node.js and swagger-coverage
         run: |
-          curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
           sudo apt-get install -y nodejs
           sudo npm install -g swagger-coverage
+
 
       - name: Run swagger-coverage
         run: swagger-coverage -i http://localhost:8111/app/rest/swagger.json -o coverage
@@ -145,10 +147,10 @@ jobs:
         uses: simple-elf/allure-report-action@v1.7
         if: always()
         with:
-            allure_results: allure-results
-            allure_report: allure-report
-            gh_pages: gh-pages
-            allure_history: allure-history
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
 
       - name: Deploy report to Github Pages
         if: always()
