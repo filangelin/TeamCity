@@ -1,7 +1,8 @@
 import logging
 import os
 from http import HTTPStatus
-
+from requests import Response
+from swagger_coverage_py.listener import CoverageListener
 from enums.host import BASE_URL
 
 
@@ -28,6 +29,14 @@ class CustomRequester:
             self.log_request_and_response(response)
         if response.status_code != expected_status_code:
             raise ValueError(f"Unexpexted status-code: {response.status_code}")
+
+        trace_api_call(
+            method=method,
+            base_url=self.base_url,
+            raw_path=endpoint,
+            uri_params=data,
+            params=data,
+        )
         return response
 
     def _update_session_headers(self, **kwargs):
@@ -72,3 +81,12 @@ class CustomRequester:
                                  f"\nDATA: {RED}{response_data}{RESET}")
         except Exception as e:
             self.logger.info(f"\nLogging went wrong: {type(e)} - {e}")
+
+
+def trace_api_call(method, base_url, raw_path, uri_params, username, password, params) -> Response:
+    return CoverageListener(
+        method=method,
+        base_url=base_url,
+        raw_path=raw_path,
+        params=params,
+    ).response

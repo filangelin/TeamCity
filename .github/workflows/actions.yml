@@ -131,18 +131,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-
-      - name: Install Node.js and swagger-coverage
-        run: |
-          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-          sudo apt-get install -y nodejs
-          sudo npm install -g swagger-coverage
-
-
-      - name: Run swagger-coverage
-        run: swagger-coverage -i http://localhost:8111/app/rest/swagger.json -o coverage
-
-
       - name: Allure Results
         uses: simple-elf/allure-report-action@v1.7
         if: always()
@@ -159,6 +147,20 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+
+      - name: Generate Swagger
+        uses: Legion2/swagger-ui-action@v1.2.0
+        with:
+          spec-file: swagger-coverage-config-teamcity.json
+          output: swagger-coverage-output
+          version: '2.0'
+
+      - name: Deploy report to Github Pages
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: swagger-ui
 #      - name: Load test report history
 #        uses: actions/checkout@v2
 #        if: always()
