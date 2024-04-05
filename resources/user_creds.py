@@ -11,3 +11,11 @@ class SuperAdminCreds:
     """
     USERNAME = ''
     PASSWORD = os.getenv('SUPER_USER_TOKEN')
+
+
+class AdminCreds:
+    """
+    Креды админа.
+    """
+    USERNAME = os.getenv('ADMIN_TOKEN')
+    PASSWORD = os.getenv('ADMIN_PASSWORD')
