@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 
@@ -70,7 +68,6 @@ def test_create_project_with_empty_name(browser, project_data_body, super_admin)
     with allure.step("Подготовка данных"):
         project_data = project_data_body()
         project_id = project_data.id
-        project_name = project_data.name
     with allure.step("Авторизация пользователя"):
         login_browser = LoginPage(browser)
         login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
@@ -82,7 +79,6 @@ def test_create_project_with_empty_name(browser, project_data_body, super_admin)
 def test_create_project_with_empty_id(browser, project_data_body, super_admin):
     with allure.step("Подготовка данных"):
         project_data = project_data_body()
-        project_id = project_data.id
         project_name = project_data.name
     with allure.step("Авторизация пользователя"):
         login_browser = LoginPage(browser)
@@ -99,4 +95,3 @@ def test_create_project_with_nonlatin_id(browser, project_data_body, super_admin
     with allure.step("Создание проекта c id символами нелатинского алфавита"):
         project_creation_browser = ProjectCreationPage(browser)
         project_creation_browser.create_project_with_nonlatin_id('проект', 'айди')
-

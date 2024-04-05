@@ -19,7 +19,6 @@ class Loading(BasePage):
     def __init__(self, page):
         super().__init__(page)
 
-
     def wait_loading(self):
         time.sleep(10)
         self.actions.wait_for_page_load()
@@ -61,7 +60,7 @@ class SetupUser(BasePage):
 class SetupPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.page_url = f"/mnt"
+        self.page_url = "/mnt"
         self.first_starts_window = FirstStartsWindow(self.page)
         self.loading = Loading(self.page)
         self.agreement = Agreement(self.page)

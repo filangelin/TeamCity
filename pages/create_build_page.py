@@ -13,8 +13,12 @@ class BuildCreationPage(BasePage):
         self.build_id_selector = "input#buildTypeExternalId"
         self.build_description_selector = "input#description"
         self.create_build_button = "input[value=Create]"
-        self.created_build_page = "/admin/editVcsRoot.html?action=addVcsRoot&editingScope=buildType%3A{build_id}&cameFromUrl=%2Fadmin%2FeditBuildTypeVcsRoots.html%3Finit%3D1%26id%3DbuildType%3A{build_id}%26cameFromUrl%3D%252Fadmin%252FeditProject.html%253Finit%253D1%2526projectId%253D{project_id}&cameFromTitle=Version%20Control%20Settings&showSkip=true"
+        self.created_build_page = ("/admin/editVcsRoot.html?action=addVcsRoot&editingScope=buildType%3A{build_id}"
+                                   "&cameFromUrl=%2Fadmin%2FeditBuildTypeVcsRoots.html%3Finit%3D1%26id%3DbuildType%3A"
+                                   "{build_id}%26cameFromUrl%3D%252Fadmin%252FeditProject.html%253Finit%253D1%2526proje"
+                                   "ctId%253D{project_id}&cameFromTitle=Version%20Control%20Settings&showSkip=true")
         self.create_manually_selector = "xpath=//*[text()=' Manually']"
+
     def go_to_addition_build_page(self):
         with allure.step("Переход на страницу для создания билда"):
             self.actions.navigate(self.page_url)

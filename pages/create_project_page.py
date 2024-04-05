@@ -90,6 +90,6 @@ class ProjectCreationPage(BasePage):
         self.create_form_container.input_project_details(project_name, project_id, '')
         self.create_form_container.click_create_button()
         self.actions.assert_text_in_element(self.error_id_selector,
-                                            f"""Project ID \"{project_id}\" is invalid: contains non-latin letter 
-                                            '{project_id[0]}'. ID should start with a latin letter and contain only 
+                                            f"""Project ID \"{project_id}\" is invalid: contains non-latin letter
+                                            '{project_id[0]}'. ID should start with a latin letter and contain only
                                             latin letters, digits and underscores (at most 225 characters).""")

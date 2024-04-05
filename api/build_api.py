@@ -22,6 +22,5 @@ class BuildAPI(CustomRequester):
         return self.send_request("DELETE", f"/app/rest/buildTypes/{build_id}", expected_status_code=expected_status)
 
     def locate_builds_of_project(self, project_id, expected_status=HTTPStatus.OK):
-        return self.send_request("GET", f"/app/rest/buildTypes?locator=project:{project_id}", expected_status_code=expected_status)
-
-
+        return self.send_request("GET", f"/app/rest/buildTypes?locator=project:{project_id}",
+                                 expected_status_code=expected_status)

@@ -1,6 +1,4 @@
 import allure
-from playwright.sync_api import Page, expect
-from enums.host import BASE_URL
 from pages.base_page import BasePage
 
 

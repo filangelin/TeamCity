@@ -1,7 +1,7 @@
-from pydantic import BaseModel, ConfigDict, validator
+from pydantic import BaseModel, ConfigDict
 
 from utils.datagenerator import DataGenerator
-from typing import Optional, List, Dict
+from typing import Optional, List
 
 
 class BuildDataModel(BaseModel):
@@ -118,6 +118,7 @@ class Step(BaseModel):
 class Steps(BaseModel):
     count: int
     steps: Optional[Step] = None
+
 
 class BuildResponseModel(BaseModel):
     model_config = ConfigDict(extra="allow")

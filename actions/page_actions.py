@@ -46,7 +46,7 @@ class PageAction:
         with allure.step(f"Ожидаем повяления селектора: {selector}"):
             self.page.wait_for_selector(selector, state='visible', timeout=timeout)
 
-    def wait_for_disappear_selector(self, selector,  timeout=3000):
+    def wait_for_disappear_selector(self, selector, timeout=3000):
         with allure.step(f"Ожидаем исчезновения селектора {selector}"):
             self.page.wait_for_selector(selector, state='detached', timeout=timeout)
 
@@ -68,9 +68,9 @@ class PageAction:
 
     def check_url_in_new_tab(self, button, expected_url):
         with allure.step(
-                f"Проверка, что при нажатии на  {button} осуществляется переход на ссылку {expected_url} в новой вкладке"):
+                f"Проверка, что при нажатии на  {button} осуществляется переход на ссылку"
+                f" {expected_url} в новой вкладке"):
             with self.page.context.expect_page() as new_page_info:
                 self.click_button(button)
                 new_page = new_page_info.value
                 expect(new_page).to_have_url(expected_url, timeout=60000)
-

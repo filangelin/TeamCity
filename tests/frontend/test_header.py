@@ -17,5 +17,5 @@ def test_header_projects(browser):
         login_browser = LoginPage(browser)
         login_browser.login(AdminCreds.USERNAME, AdminCreds.PASSWORD)
 
-    with allure.step(f"Проверка кнопки хэдера Projects"):
+    with allure.step("Проверка кнопки хэдера Projects"):
         page.header.go_to_projects_throw_header_button()

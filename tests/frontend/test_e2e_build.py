@@ -1,4 +1,3 @@
-import time
 from http import HTTPStatus
 
 import allure

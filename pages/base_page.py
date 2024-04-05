@@ -1,5 +1,4 @@
-import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from actions.page_actions import PageAction
 from components.footer import Footer
@@ -23,5 +22,3 @@ class BasePage:
     @page_url.setter
     def page_url(self, endpoint):
         self._endpoint = endpoint
-
-

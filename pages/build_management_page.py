@@ -47,4 +47,3 @@ class BuildManagementPage(BasePage):
         self.menu_list_actions.click_on_delete_build()
         self.page_url = REMOVED_BUILD_PAGE.format(project_id=project_id)
         self.actions.wait_for_url_change(self.page_url)
-

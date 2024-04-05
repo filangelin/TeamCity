@@ -2,14 +2,13 @@ import pytest
 import requests
 import time
 
-from api.auth_api import AuthAPI
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
 from entities.user import User, Role
 from enums.browser import BROWSERS
 from utils.browser_setup import BrowserSetup
 from enums.roles import Roles
-from resources.user_creds import SuperAdminCreds, AdminCreds
+from resources.user_creds import SuperAdminCreds
 from api.api_manager import ApiManager
 from playwright.sync_api import expect
 
@@ -57,7 +56,7 @@ def project_data_body(request, super_admin) -> ProjectDataModel:
 def super_admin(user_session):
     new_session = user_session()
     super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
-    response = super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
+    super_admin.api_object.auth_api.auth_and_get_csrf(super_admin.creds)
     return super_admin
 
 
