@@ -1,6 +1,0 @@
-.idea
-venv
-TeamCityTests.iml
-.env
-__pycache__
-/allure-results/
