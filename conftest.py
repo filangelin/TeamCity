@@ -2,7 +2,6 @@ import pytest
 import requests
 import time
 from swagger_coverage_py.reporter import CoverageReporter
-from requests.auth import HTTPBasicAuth
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
 from entities.user import User, Role
