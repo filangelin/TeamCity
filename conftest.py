@@ -20,6 +20,7 @@ expect.set_options(timeout=60_000)
 def setup_swagger_coverage():
     reporter = CoverageReporter(api_name="teamcity", host=BASE_URL)
     reporter.cleanup_input_files()
+    time.sleep(60)
     reporter.setup("/app/rest/swagger.json")
 
     yield
