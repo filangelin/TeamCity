@@ -1,7 +1,8 @@
 import pytest
 import requests
 import time
-
+from swagger_coverage_py.reporter import CoverageReporter
+from requests.auth import HTTPBasicAuth
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
 from entities.user import User, Role
@@ -11,8 +12,19 @@ from enums.roles import Roles
 from resources.user_creds import SuperAdminCreds
 from api.api_manager import ApiManager
 from playwright.sync_api import expect
+from enums.host import BASE_URL
 
 expect.set_options(timeout=60_000)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_swagger_coverage():
+    reporter = CoverageReporter(api_name="teamcity", host=BASE_URL)
+    reporter.cleanup_input_files()
+    reporter.setup("/app/rest/swagger.json", auth=HTTPBasicAuth(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD))
+
+    yield
+    reporter.generate_report()
 
 
 @pytest.fixture(autouse=True)
