@@ -1,0 +1,19 @@
+2024-04-07 19:01:06 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build_with_empty_name[chromium] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic Ojg4ODgwNzYyODgyMjM4OTA2NTE=' \
+2024-04-07 19:01:10 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build_with_empty_name[chromium][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 2afba2c0-b164-4206-8652-f8a7b980c0fa' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=9BDB85140422D9D0AF053E1D9E5654F4' \
+-H 'Content-Length: 113' \
+-H 'Authorization: Basic Ojg4ODgwNzYyODgyMjM4OTA2NTE=' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "course", "id": "dQdbej07cFh", "copyAllAssociatedSettings": true}'
