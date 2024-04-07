@@ -1,0 +1,24 @@
+2024-04-07 09:32:14 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_build_create_with_empty_body (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjQxNTM5OTc0Mzk3OTc0MDI4NTY=' \
+2024-04-07 09:32:14 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_build_create_with_empty_body[0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: e0a9f105-ccda-4161-bba9-54c6af2c07e5' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=F1A9F5643DF1E9AE2A7E66F581CC8218' \
+-H 'Content-Length: 2' \
+-H 'Authorization: Basic OjQxNTM5OTc0Mzk3OTc0MDI4NTY=' \
+
+2024-04-07 09:32:14 INFO 	RESPONSE:
+STATUS_CODE: [31m400[0m
+DATA: [31mResponding with error, status code: 400 (Bad Request).
+Details: jetbrains.buildServer.server.rest.errors.BadRequestException: Build type creation request should contain project node.
+Invalid request. Please check the request URL and data are correct.[0m
