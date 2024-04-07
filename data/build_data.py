@@ -117,7 +117,7 @@ class Step(BaseModel):
 
 class Steps(BaseModel):
     count: int
-    step: List[Step]
+    steps: Optional[Step] = None
 
 
 class BuildResponseModel(BaseModel):

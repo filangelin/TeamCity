@@ -40,11 +40,12 @@ class TestBuild:
     @allure.description('Тест проверяет невозможность создания билда c пустым телом')
     def test_build_create_with_empty_body(self, super_admin):
         with allure.step('Попытка создания проекта'):
-            created_build = super_admin.api_object.build_api.create_build({}, expected_status=HTTPStatus.BAD_REQUEST).text
+            created_build = super_admin.api_object.build_api.create_build({},
+                                                                          expected_status=HTTPStatus.BAD_REQUEST).text
         with allure.step('Проверка ответа о невозможности создания билда с пустым телом'):
             with pytest.assume:
-                assert f"Build type creation request should contain project node." in created_build, \
-                    f"Expected build without body can not to be created"
+                assert "Build type creation request should contain project node." in created_build, \
+                    "Expected build without body can not to be created"
 
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.title('Проверка невозможности создания одинаковых билдов')

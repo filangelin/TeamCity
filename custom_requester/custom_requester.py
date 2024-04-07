@@ -1,7 +1,6 @@
 import logging
 import os
 from http import HTTPStatus
-
 from enums.host import BASE_URL
 
 

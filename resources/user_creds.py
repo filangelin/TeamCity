@@ -6,8 +6,16 @@ load_dotenv()
 
 class SuperAdminCreds:
     """
-    Креды супер админа. Для авторизации в TeamCity под супер админом оставляется пустым username, а пароль - токен и логов
-    контейнера
+    Креды супер админа. Для авторизации в TeamCity под супер админом оставляется пустым username, а пароль - токен и
+    логов контейнера
     """
     USERNAME = ''
     PASSWORD = os.getenv('SUPER_USER_TOKEN')
+
+
+class AdminCreds:
+    """
+    Креды админа.
+    """
+    USERNAME = os.getenv('ADMIN_TOKEN')
+    PASSWORD = os.getenv('ADMIN_PASSWORD')

@@ -39,11 +39,12 @@ class TestProjectCreate:
     @allure.description('Тест проверяет невозможность создания проекта c пустым телом')
     def test_project_create_with_empty_body(self, super_admin):
         with allure.step('Попытка создания проекта'):
-            created_project = super_admin.api_object.project_api.create_project({}, expected_status=HTTPStatus.BAD_REQUEST).text
+            created_project = super_admin.api_object.project_api \
+                .create_project({}, expected_status=HTTPStatus.BAD_REQUEST).text
         with allure.step('Проверка ответа о невозможности создания проекта с пустым телом'):
             with pytest.assume:
-                assert f"Project name cannot be empty." in created_project, \
-                    f"Expected project without body can not to be created"
+                assert "Project name cannot be empty." in created_project, \
+                    "Expected project without body can not to be created"
 
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.link('https://example.com/docs/create_project', name='Документация')

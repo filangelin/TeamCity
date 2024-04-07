@@ -1,12 +1,22 @@
 import pytest
 import requests
-
+import time
 from data.project_data import ProjectDataModel, ProjectData
 from data.user_data import UserData
 from entities.user import User, Role
+from enums.browser import BROWSERS
+from utils.browser_setup import BrowserSetup
 from enums.roles import Roles
 from resources.user_creds import SuperAdminCreds
 from api.api_manager import ApiManager
+from playwright.sync_api import expect
+
+expect.set_options(timeout=60_000)
+
+
+@pytest.fixture(autouse=True)
+def delay_between_tests():
+    time.sleep(5)
 
 
 @pytest.fixture
@@ -26,7 +36,7 @@ def user_session():
 
 
 @pytest.fixture
-def project_data_body(super_admin) -> ProjectDataModel:
+def project_data_body(request, super_admin) -> ProjectDataModel:
     project_id_pool = []
 
     def _create_project_data():
@@ -36,11 +46,12 @@ def project_data_body(super_admin) -> ProjectDataModel:
 
     yield _create_project_data
 
-    for project_id in project_id_pool:
-        super_admin.api_object.project_api.clean_up_project(project_id)
+    if request.node.get_closest_marker("teardown_required"):
+        for project_id in project_id_pool:
+            super_admin.api_object.project_api.clean_up_project(project_id)
 
 
-@pytest.fixture()
+@pytest.fixture
 def super_admin(user_session):
     new_session = user_session()
     super_admin = User(SuperAdminCreds.USERNAME, SuperAdminCreds.PASSWORD, new_session, ["SUPER_ADMIN", "g"])
@@ -66,6 +77,7 @@ def user_create(user_session, super_admin):
         super_admin.api_object.user_api.delete_user(username)
 
 
+@pytest.mark.teardown_required
 @pytest.fixture(params=[Roles.SYSTEM_ADMIN, Roles.PROJECT_ADMIN, Roles.AGENT_MANAGER])
 def prepared_project(request, user_create, project_data_body):
     role = request.param
@@ -76,3 +88,17 @@ def prepared_project(request, user_create, project_data_body):
     if not function_name.startswith("test_project_create"):
         user.api_object.project_api.create_project(project_data.model_dump())
     return project_data, user
+
+
+@pytest.fixture(params=BROWSERS)
+def browser(request):
+    playwright, browser, context, page = BrowserSetup.setup(browser_type=request.param)
+    yield page
+    BrowserSetup.teardown(context, browser, playwright)
+
+
+@pytest.fixture
+def browser_for_setup(request):
+    playwright, browser, context, page = BrowserSetup.setup(browser_type='chromium')
+    yield page
+    BrowserSetup.teardown(context, browser, playwright)
