@@ -121,7 +121,7 @@ jobs:
 
       - name: Start recoder
         run: |
-          docker run -d -p 3000:3000 -v $PWD:/reqover reqover/reqover-cli record -t http://localhost:8111/app/rest/swagger.json
+          docker run -d -p 3000:3000 -v $PWD:/reqover reqover/reqover-cli record -t  http://teamcity-server-instance:8111/app/rest/swagger.json
 
       - name: Run tests
         run: |
@@ -159,7 +159,7 @@ jobs:
 
       - name: Run reqover
         run: |
-          npx reqover generate -f http://localhost:8111/app/rest/swagger.json -d reqover-results --html
+          npx reqover generate -f http://teamcity-server-instance:8111:8111/app/rest/swagger.json -d reqover-results --html
 
       - name: Deploy swagger-coverage report to Github Pages
         uses: peaceiris/actions-gh-pages@v2
