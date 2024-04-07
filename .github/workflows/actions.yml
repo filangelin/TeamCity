@@ -159,6 +159,7 @@ jobs:
 
       - name: Run reqover
         run: |
+          mkdir reqover-results
           npx reqover generate -f swagger.json -d reqover-results --html
 
       - name: Deploy swagger-coverage report to Github Pages
