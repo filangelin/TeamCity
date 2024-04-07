@@ -149,14 +149,14 @@ jobs:
 
       - name: Run reqover
         run: |
-          mkdir reqover-results
-          npx reqover generate -f swagger.json -d reqover-results --html
+          mkdir reqover
+          npx reqover generate -f swagger.json -d reqover --html
 
       - name: Combine Reports
         run: |
           mkdir combined-results
           cp -r allure-history/* combined-results/
-          cp -r reqover-results/* combined-results/
+          cp -r reqover/* combined-results/
 
       - name: Deploy Combined Report to Github Pages
         if: always()
