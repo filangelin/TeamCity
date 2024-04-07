@@ -119,13 +119,11 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
-      - name: Start recoder
+      - name: Start recorder and run tests
         run: |
-          docker run -d -p 3000:3000 -v $PWD:/reqover reqover/reqover-cli record -t  swagger.json
-
-      - name: Run tests
-        run: |
+          docker run -d --network host -v $PWD:/reqover reqover/reqover-cli record -t http://localhost:8111/app/rest/swagger.json
           pytest -v --alluredir=allure-results --reruns 2 --ignore=tests/frontend/test_set_up.py tests/backend
+
 
       - name: Load test report history
         uses: actions/checkout@v3
@@ -144,14 +142,6 @@ jobs:
           gh_pages: gh-pages
           allure_history: allure-history
 
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -162,33 +152,19 @@ jobs:
           mkdir reqover-results
           npx reqover generate -f swagger.json -d reqover-results --html
 
-      - name: Deploy swagger-coverage report to Github Pages
+      - name: Combine Reports
+        run: |
+          mkdir combined-results
+          cp -r allure-history/* combined-results/
+          cp -r reqover-results/* combined-results/
+
+      - name: Deploy Combined Report to Github Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: reqover-results
-#      - name: Load test report history
-#        uses: actions/checkout@v2
-#        if: always()
-#        continue-on-error: true
-#        with:
-#          ref: gh-pages
-#          path: gh-pages
-#
-#      - name: Install Allure
-#        run: |
-#          wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
-#          sudo tar -zxvf allure-2.13.8.tgz -C /opt/
-#          echo "PATH=$PATH:/opt/allure-2.13.8/bin/" >> $GITHUB_ENV
-#
-#      - name: Generate Allure report
-#        run: allure generate allure-results -o allure-report --clean
-#        if: always()
-#
-#      - name: Publish Allure report to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: allure-report
+          PUBLISH_DIR: combined-results
+
+
 
