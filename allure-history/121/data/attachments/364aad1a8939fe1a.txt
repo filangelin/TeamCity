@@ -1,0 +1,71 @@
+2024-04-07 19:50:32 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+2024-04-07 19:50:35 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a291a14a-6722-4b54-a8c1-5fbe665bdb84' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=6B7786BFDA818DBEC8F93A1B4B02E0B8' \
+-H 'Content-Length: 110' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "any", "id": "IoTctMiFTS6", "copyAllAssociatedSettings": true}' 
+
+2024-04-07 19:50:35 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox][0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a291a14a-6722-4b54-a8c1-5fbe665bdb84' \
+-H 'Cookie: TCSESSIONID=6B7786BFDA818DBEC8F93A1B4B02E0B8' \
+-H 'Content-Length: 346' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+-d '{"id": "VSQ3QuV45sR", "name": "BuildConfName", "project": {"id": "IoTctMiFTS6"}, "steps": {"step": [{"name": "myCommandLineStep", "type": "simpleRunner", "properties": {"property": [{"name": "script.content", "value": "echo 'Hello World!'"}, {"name": "teamcity.step.mode", "value": "default"}, {"name": "use.custom.script", "value": "true"}]}}]}}' 
+
+2024-04-07 19:50:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes/id:VSQ3QuV45sR' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a291a14a-6722-4b54-a8c1-5fbe665bdb84' \
+-H 'Cookie: TCSESSIONID=6B7786BFDA818DBEC8F93A1B4B02E0B8' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+
+2024-04-07 19:50:39 INFO 	RESPONSE:
+STATUS_CODE: [31m404[0m
+DATA: [31mResponding with error, status code: 404 (Not Found).
+Details: jetbrains.buildServer.server.rest.errors.NotFoundException: No build type nor template is found by id 'VSQ3QuV45sR'.
+Could not find the entity requested. Check the reference is correct and the user has permissions to access the entity.[0m
+2024-04-07 19:50:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:IoTctMiFTS6' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a291a14a-6722-4b54-a8c1-5fbe665bdb84' \
+-H 'Cookie: TCSESSIONID=6B7786BFDA818DBEC8F93A1B4B02E0B8' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+
+2024-04-07 19:50:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[firefox] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a291a14a-6722-4b54-a8c1-5fbe665bdb84' \
+-H 'Cookie: TCSESSIONID=6B7786BFDA818DBEC8F93A1B4B02E0B8' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \

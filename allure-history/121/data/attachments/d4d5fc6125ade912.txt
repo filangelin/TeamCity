@@ -1,0 +1,71 @@
+2024-04-07 19:50:47 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+2024-04-07 19:50:48 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 375ee1bb-aadd-46b1-ad03-85f9b25d9d1f' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=277ACBC3D15B327A78692DB1BA41F63C' \
+-H 'Content-Length: 117' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "democratic", "id": "DLlCn5RuDCF", "copyAllAssociatedSettings": true}' 
+
+2024-04-07 19:50:48 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit][0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 375ee1bb-aadd-46b1-ad03-85f9b25d9d1f' \
+-H 'Cookie: TCSESSIONID=277ACBC3D15B327A78692DB1BA41F63C' \
+-H 'Content-Length: 346' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+-d '{"id": "xOxpSy045a6", "name": "BuildConfName", "project": {"id": "DLlCn5RuDCF"}, "steps": {"step": [{"name": "myCommandLineStep", "type": "simpleRunner", "properties": {"property": [{"name": "script.content", "value": "echo 'Hello World!'"}, {"name": "teamcity.step.mode", "value": "default"}, {"name": "use.custom.script", "value": "true"}]}}]}}' 
+
+2024-04-07 19:50:51 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes/id:xOxpSy045a6' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 375ee1bb-aadd-46b1-ad03-85f9b25d9d1f' \
+-H 'Cookie: TCSESSIONID=277ACBC3D15B327A78692DB1BA41F63C' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+
+2024-04-07 19:50:51 INFO 	RESPONSE:
+STATUS_CODE: [31m404[0m
+DATA: [31mResponding with error, status code: 404 (Not Found).
+Details: jetbrains.buildServer.server.rest.errors.NotFoundException: No build type nor template is found by id 'xOxpSy045a6'.
+Could not find the entity requested. Check the reference is correct and the user has permissions to access the entity.[0m
+2024-04-07 19:50:51 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:DLlCn5RuDCF' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 375ee1bb-aadd-46b1-ad03-85f9b25d9d1f' \
+-H 'Cookie: TCSESSIONID=277ACBC3D15B327A78692DB1BA41F63C' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
+
+2024-04-07 19:50:51 INFO [32mpytest tests/frontend/test_e2e_build.py::test_delete_build[webkit] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 375ee1bb-aadd-46b1-ad03-85f9b25d9d1f' \
+-H 'Cookie: TCSESSIONID=277ACBC3D15B327A78692DB1BA41F63C' \
+-H 'Authorization: Basic Ojg2MDU1MjAyNDUzOTk2OTEyOTc=' \
