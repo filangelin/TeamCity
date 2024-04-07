@@ -119,6 +119,10 @@ jobs:
           fi
         shell: /usr/bin/bash -e {0}
 
+      - name: Start recoder
+        run: |
+          docker run -p 3000:3000 -v $PWD:/reqover reqover/reqover-cli record -t http://localhost:8111/app/rest/swagger.json
+
       - name: Run tests
         run: |
           pytest -v --alluredir=allure-results --reruns 2 --ignore=tests/frontend/test_set_up.py tests/backend
@@ -140,18 +144,6 @@ jobs:
           gh_pages: gh-pages
           allure_history: allure-history
 
-      - name: Copy Swagger Coverage Report
-        run: |
-            cp swagger-coverage-report-teamcity.html gh-pages/
-
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: gh-pages
-
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -160,6 +152,22 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Run reqover
+        run: |
+          npx reqover generate -f http://localhost:8111/app/rest/swagger.json -d reqover-results --html
+          npx reqover serve
+
+      - name: Deploy swagger-coverage report to Github Pages
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: reqover
 #      - name: Load test report history
 #        uses: actions/checkout@v2
 #        if: always()
