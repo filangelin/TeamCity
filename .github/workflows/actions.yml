@@ -121,6 +121,7 @@ jobs:
 
       - name: Start recorder and run tests
         run: |
+          mkdir reqover
           docker run -d --network host -v $PWD:/reqover reqover/reqover-cli record -t http://localhost:8111/app/rest/swagger.json
           pytest -v --alluredir=allure-results --reruns 2 --ignore=tests/frontend/test_set_up.py tests/backend
 
@@ -149,8 +150,7 @@ jobs:
 
       - name: Run reqover
         run: |
-          mkdir reqover
-          docker run --network host -v $PWD:/reqover reqover/reqover-cli generate -f http://localhost:8111/app/rest/swagger.json -d /reqover --html
+          npx reqover generate -f swagger.json -d reqover --html
           mkdir combined-results
           cp -r allure-history/* combined-results/
           cp -r .reqover/coverage.json combined-results/
