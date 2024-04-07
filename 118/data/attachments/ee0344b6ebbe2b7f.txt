@@ -1,0 +1,39 @@
+2024-04-07 18:16:45 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[firefox] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \
+2024-04-07 18:16:51 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[firefox][0m
+curl -X GET 'http://localhost:8111/app/rest/projects/my' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 1d4426c0-82c9-4125-88a1-2d74cf66ceeb' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=E08D0CC104CA6AFD61EBBF6B5961E4AA' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \
+2024-04-07 18:16:51 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[firefox] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:z9Rn3gZkQgP' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 1d4426c0-82c9-4125-88a1-2d74cf66ceeb' \
+-H 'Cookie: TCSESSIONID=E08D0CC104CA6AFD61EBBF6B5961E4AA' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \
+
+2024-04-07 18:16:51 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[firefox] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 1d4426c0-82c9-4125-88a1-2d74cf66ceeb' \
+-H 'Cookie: TCSESSIONID=E08D0CC104CA6AFD61EBBF6B5961E4AA' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \

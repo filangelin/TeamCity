@@ -1,0 +1,24 @@
+2024-04-07 18:12:57 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_empty_body (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \
+2024-04-07 18:12:57 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_empty_body[0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 32df85d3-6bfc-4d8d-8a4b-cd4654dd4baa' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=002C62F6A28EE4919CFB895D0C968710' \
+-H 'Content-Length: 2' \
+-H 'Authorization: Basic OjM5NjE3NjM4MjM5MjA1Mzc4NjY=' \
+
+2024-04-07 18:12:57 INFO 	RESPONSE:
+STATUS_CODE: [31m400[0m
+DATA: [31mResponding with error, status code: 400 (Bad Request).
+Details: jetbrains.buildServer.server.rest.errors.BadRequestException: Project name cannot be empty.
+Invalid request. Please check the request URL and data are correct.[0m
