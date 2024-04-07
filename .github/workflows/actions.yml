@@ -167,7 +167,7 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: reqover
+          PUBLISH_DIR: reqover-results
 #      - name: Load test report history
 #        uses: actions/checkout@v2
 #        if: always()

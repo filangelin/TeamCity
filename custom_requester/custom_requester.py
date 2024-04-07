@@ -2,7 +2,6 @@ import logging
 import os
 from http import HTTPStatus
 from enums.host import BASE_URL
-from swagger_coverage_py.listener import CoverageListener
 
 
 class CustomRequester:
@@ -23,20 +22,12 @@ class CustomRequester:
         :return: Возвращает обхект ответа
         """
         url = f"{self.base_url}{endpoint}"
-
-        # Create a CoverageListener instance before the request
-        listener = CoverageListener(
-            method=method,
-            base_url=self.base_url,
-            raw_path=endpoint,
-            data=data,
-        )
-
-        # Make the request with your session as usual
         response = self.session.request(method, url, json=data)
-
-        # Update the CoverageListener with the response
-        listener.response = response
+        if need_logging:
+            self.log_request_and_response(response)
+        if response.status_code != expected_status_code:
+            raise ValueError(f"Unexpexted status-code: {response.status_code}")
+        return response
 
     def _update_session_headers(self, **kwargs):
         self.headers = self.base_headers.copy()
