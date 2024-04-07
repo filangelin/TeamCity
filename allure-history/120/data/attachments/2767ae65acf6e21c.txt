@@ -1,0 +1,39 @@
+2024-04-07 19:30:57 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+2024-04-07 19:31:05 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium][0m
+curl -X GET 'http://localhost:8111/app/rest/projects/drive' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5b0e8aa1-0a7d-4638-8f3c-936d2887c4b1' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=9EA3298181F284516DEBD6FBCD968296' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+2024-04-07 19:31:05 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:Rocu8oVccPr' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5b0e8aa1-0a7d-4638-8f3c-936d2887c4b1' \
+-H 'Cookie: TCSESSIONID=9EA3298181F284516DEBD6FBCD968296' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+
+2024-04-07 19:31:05 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5b0e8aa1-0a7d-4638-8f3c-936d2887c4b1' \
+-H 'Cookie: TCSESSIONID=9EA3298181F284516DEBD6FBCD968296' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \

@@ -1,0 +1,114 @@
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER] (setup)[0m
+curl -X POST 'http://localhost:8111/app/rest/users' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 004d15ba-1a8f-4f3b-928f-66be26b4c9c0' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=0EA5DFB698C69CDFE3C5DCBAA0449BC4' \
+-H 'Content-Length: 152' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+-d '{"username": "Crystal", "password": "xoMasTGNmy3", "email": "tammypeterson@example.org", "roles": {"role": [{"roleId": "AGENT_MANAGER", "scope": "g"}]}}' 
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER] (setup)[0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Content-Length: 115' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "computer", "id": "sbv7G4KATBg", "copyAllAssociatedSettings": true}'
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER][0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Content-Length: 346' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+-d '{"id": "rOkSv3Vr1HH", "name": "BuildConfName", "project": {"id": "sbv7G4KATBg"}, "steps": {"step": [{"name": "myCommandLineStep", "type": "simpleRunner", "properties": {"property": [{"name": "script.content", "value": "echo 'Hello World!'"}, {"name": "teamcity.step.mode", "value": "default"}, {"name": "use.custom.script", "value": "true"}]}}]}}' 
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes?locator=project:sbv7G4KATBg' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER][0m
+curl -X DELETE 'http://localhost:8111/app/rest/buildTypes/rOkSv3Vr1HH' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes/id:rOkSv3Vr1HH' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+
+2024-04-07 19:26:52 INFO 	RESPONSE:
+STATUS_CODE: [31m404[0m
+DATA: [31mResponding with error, status code: 404 (Not Found).
+Details: jetbrains.buildServer.server.rest.errors.NotFoundException: No build type nor template is found by id 'rOkSv3Vr1HH'.
+Could not find the entity requested. Check the reference is correct and the user has permissions to access the entity.[0m
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes?locator=project:sbv7G4KATBg' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b7d8abb0-feb4-44e9-9cfb-04002d14c05a' \
+-H 'Cookie: TCSESSIONID=E6F7CD8A78E1B22A317E816071FCFC54' \
+-H 'Authorization: Basic Q3J5c3RhbDp4b01hc1RHTm15Mw==' \
+2024-04-07 19:26:52 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_delete_build[Roles.AGENT_MANAGER] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/users/Crystal' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 004d15ba-1a8f-4f3b-928f-66be26b4c9c0' \
+-H 'Cookie: TCSESSIONID=0EA5DFB698C69CDFE3C5DCBAA0449BC4' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \

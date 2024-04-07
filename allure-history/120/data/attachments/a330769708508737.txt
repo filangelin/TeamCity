@@ -1,0 +1,19 @@
+2024-04-07 19:30:09 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build_with_empty_name[webkit] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+2024-04-07 19:30:10 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build_with_empty_name[webkit][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 456be38e-c9ff-444b-a007-0d9c3b548d66' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=273F093282E39FE9799856BF4B211E74' \
+-H 'Content-Length: 114' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "federal", "id": "JA8KnleaJjS", "copyAllAssociatedSettings": true}'

@@ -1,0 +1,93 @@
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X POST 'http://localhost:8111/app/rest/users' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 94a4eb35-2788-4211-ac7c-52f058e9dd80' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=A1FFDEDE8487812CA9ED2482F68A6472' \
+-H 'Content-Length: 153' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+-d '{"username": "Matthew", "password": "jO3FBvPR5IG", "email": "charlottewilson@example.com", "roles": {"role": [{"roleId": "SYSTEM_ADMIN", "scope": "g"}]}}' 
+
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic TWF0dGhldzpqTzNGQnZQUjVJRw==' \
+
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5a420adb-9785-44c9-9b68-ee2e9ef98c35' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=A2148F54F9BF06EB3A338663330CD25F' \
+-H 'Content-Length: 115' \
+-H 'Authorization: Basic TWF0dGhldzpqTzNGQnZQUjVJRw==' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "practice", "id": "cFrSx2NYINp", "copyAllAssociatedSettings": true}'
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN][0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5a420adb-9785-44c9-9b68-ee2e9ef98c35' \
+-H 'Cookie: TCSESSIONID=A2148F54F9BF06EB3A338663330CD25F' \
+-H 'Content-Length: 346' \
+-H 'Authorization: Basic TWF0dGhldzpqTzNGQnZQUjVJRw==' \
+-d '{"id": "YrnKgQMSTDa", "name": "BuildConfName", "project": {"id": "cFrSx2NYINp"}, "steps": {"step": [{"name": "myCommandLineStep", "type": "simpleRunner", "properties": {"property": [{"name": "script.content", "value": "echo 'Hello World!'"}, {"name": "teamcity.step.mode", "value": "default"}, {"name": "use.custom.script", "value": "true"}]}}]}}' 
+
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN][0m
+curl -X POST 'http://localhost:8111/app/rest/buildTypes' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5a420adb-9785-44c9-9b68-ee2e9ef98c35' \
+-H 'Cookie: TCSESSIONID=A2148F54F9BF06EB3A338663330CD25F' \
+-H 'Content-Length: 346' \
+-H 'Authorization: Basic TWF0dGhldzpqTzNGQnZQUjVJRw==' \
+-d '{"id": "YrnKgQMSTDa", "name": "BuildConfName", "project": {"id": "cFrSx2NYINp"}, "steps": {"step": [{"name": "myCommandLineStep", "type": "simpleRunner", "properties": {"property": [{"name": "script.content", "value": "echo 'Hello World!'"}, {"name": "teamcity.step.mode", "value": "default"}, {"name": "use.custom.script", "value": "true"}]}}]}}' 
+
+2024-04-07 19:26:27 INFO 	RESPONSE:
+STATUS_CODE: [31m400[0m
+DATA: [31mResponding with error, status code: 400 (Bad Request).
+Details: jetbrains.buildServer.serverSide.identifiers.DuplicateExternalIdException: The build configuration / template ID "YrnKgQMSTDa" is already used by another configuration or template
+The build configuration / template ID "YrnKgQMSTDa" is already used by another configuration or template[0m
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN][0m
+curl -X GET 'http://localhost:8111/app/rest/buildTypes?locator=project:cFrSx2NYINp' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 5a420adb-9785-44c9-9b68-ee2e9ef98c35' \
+-H 'Cookie: TCSESSIONID=A2148F54F9BF06EB3A338663330CD25F' \
+-H 'Authorization: Basic TWF0dGhldzpqTzNGQnZQUjVJRw==' \
+2024-04-07 19:26:27 INFO [32mpytest tests/backend/test_build.py::TestBuild::test_create_existing_build[Roles.SYSTEM_ADMIN] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/users/Matthew' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 94a4eb35-2788-4211-ac7c-52f058e9dd80' \
+-H 'Cookie: TCSESSIONID=A1FFDEDE8487812CA9ED2482F68A6472' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \

@@ -1,0 +1,39 @@
+2024-04-07 19:31:38 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[webkit] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+2024-04-07 19:31:41 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[webkit][0m
+curl -X GET 'http://localhost:8111/app/rest/projects/add' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 8c5df35b-061c-49d4-adc3-50b10c4f141b' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=4EADEAFA6C592B72F6B114536BD50B3F' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+2024-04-07 19:31:41 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[webkit] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:opXxmLDo2om' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 8c5df35b-061c-49d4-adc3-50b10c4f141b' \
+-H 'Cookie: TCSESSIONID=4EADEAFA6C592B72F6B114536BD50B3F' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
+
+2024-04-07 19:31:41 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[webkit] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 8c5df35b-061c-49d4-adc3-50b10c4f141b' \
+-H 'Cookie: TCSESSIONID=4EADEAFA6C592B72F6B114536BD50B3F' \
+-H 'Authorization: Basic OjYzNzg0NTUwMDI2Mjc5NTkzNjg=' \
