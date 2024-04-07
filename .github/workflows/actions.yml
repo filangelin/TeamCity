@@ -150,7 +150,7 @@ jobs:
       - name: Run reqover
         run: |
           mkdir reqover
-          npx reqover generate -f swagger.json -d reqover --html
+          docker run --network host -v $PWD:/reqover reqover/reqover-cli generate -f http://localhost:8111/app/rest/swagger.json -d /reqover --html
           mkdir combined-results
           cp -r allure-history/* combined-results/
           cp -r .reqover/coverage.json combined-results/
