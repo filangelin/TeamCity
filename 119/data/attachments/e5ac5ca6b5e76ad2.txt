@@ -1,0 +1,41 @@
+2024-04-07 18:45:36 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build[firefox] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+2024-04-07 18:45:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build[firefox][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a38bd12c-d7e8-46ff-b64f-c63169538f5d' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=98F37B47095DAE02E1BEC5107B04BC5D' \
+-H 'Content-Length: 111' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "week", "id": "sz2RoyiU2D8", "copyAllAssociatedSettings": true}'
+2024-04-07 18:45:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build[firefox] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:sz2RoyiU2D8' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a38bd12c-d7e8-46ff-b64f-c63169538f5d' \
+-H 'Cookie: TCSESSIONID=98F37B47095DAE02E1BEC5107B04BC5D' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+
+2024-04-07 18:45:39 INFO [32mpytest tests/frontend/test_e2e_build.py::test_create_build[firefox] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: a38bd12c-d7e8-46ff-b64f-c63169538f5d' \
+-H 'Cookie: TCSESSIONID=98F37B47095DAE02E1BEC5107B04BC5D' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \

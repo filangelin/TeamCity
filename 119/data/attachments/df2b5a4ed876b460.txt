@@ -1,0 +1,39 @@
+2024-04-07 18:48:44 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+2024-04-07 18:48:52 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium][0m
+curl -X GET 'http://localhost:8111/app/rest/projects/technology' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 60f336e8-3862-4840-aa8b-e351f90985df' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=EA79249266BE555FCBD78084EB86C406' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+2024-04-07 18:48:52 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/projects/id:oUfHPZCJOFL' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 60f336e8-3862-4840-aa8b-e351f90985df' \
+-H 'Cookie: TCSESSIONID=EA79249266BE555FCBD78084EB86C406' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
+
+2024-04-07 18:48:52 INFO [32mpytest tests/frontend/test_e2e_project.py::test_create_project[chromium] (teardown)[0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: 60f336e8-3862-4840-aa8b-e351f90985df' \
+-H 'Cookie: TCSESSIONID=EA79249266BE555FCBD78084EB86C406' \
+-H 'Authorization: Basic OjgxMTg1MzIxMDcyOTQ2MDAyNjk=' \
