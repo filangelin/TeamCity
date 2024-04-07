@@ -1,0 +1,80 @@
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic OjY3ODcyNTkxMjQ5NDA4NDU0NzQ=' \
+
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X POST 'http://localhost:8111/app/rest/users' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b5f5b924-4902-470e-808c-e97366ad922c' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=60FA5ED7BDA8C08BA84EEE3A07A8FC8B' \
+-H 'Content-Length: 148' \
+-H 'Authorization: Basic OjY3ODcyNTkxMjQ5NDA4NDU0NzQ=' \
+-d '{"username": "Tami", "password": "Pfwk40e8mpa", "email": "mauricearnold@example.net", "roles": {"role": [{"roleId": "SYSTEM_ADMIN", "scope": "g"}]}}' 
+
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN] (setup)[0m
+curl -X GET 'http://localhost:8111/authenticationTest.html?csrf' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: */*' \
+-H 'Connection: keep-alive' \
+-H 'Authorization: Basic VGFtaTpQZndrNDBlOG1wYQ==' \
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: ecad381f-e8ea-4573-8f11-9976c2bfe594' \
+-H 'Cookie: RecentLogin=; TCSESSIONID=885AC16DB76CF89B502AAF86D3AB804E' \
+-H 'Content-Length: 113' \
+-H 'Authorization: Basic VGFtaTpQZndrNDBlOG1wYQ==' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "person", "id": "m6IoZvVJwa2", "copyAllAssociatedSettings": true}' 
+
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN][0m
+curl -X POST 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: ecad381f-e8ea-4573-8f11-9976c2bfe594' \
+-H 'Cookie: TCSESSIONID=885AC16DB76CF89B502AAF86D3AB804E' \
+-H 'Content-Length: 116' \
+-H 'Authorization: Basic VGFtaTpQZndrNDBlOG1wYQ==' \
+-d '{"parentProject": {"locator": "_Root"}, "name": "person", "id": "m6IoZvVJwa2_id", "copyAllAssociatedSettings": true}' 
+
+2024-04-07 08:47:20 INFO 	RESPONSE:
+STATUS_CODE: [31m400[0m
+DATA: [31mResponding with error, status code: 400 (Bad Request).
+Details: jetbrains.buildServer.serverSide.DuplicateProjectNameException: Project with this name already exists: person
+Error occurred while processing this request.[0m
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN][0m
+curl -X GET 'http://localhost:8111/app/rest/projects' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: ecad381f-e8ea-4573-8f11-9976c2bfe594' \
+-H 'Cookie: TCSESSIONID=885AC16DB76CF89B502AAF86D3AB804E' \
+-H 'Authorization: Basic VGFtaTpQZndrNDBlOG1wYQ==' \
+2024-04-07 08:47:20 INFO [32mpytest tests/backend/test_project.py::TestProjectCreate::test_project_create_with_taken_name[Roles.SYSTEM_ADMIN] (teardown)[0m
+curl -X DELETE 'http://localhost:8111/app/rest/users/Tami' \
+-H 'User-Agent: python-requests/2.31.0' \
+-H 'Accept-Encoding: gzip, deflate' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'Content-Type: application/json' \
+-H 'X-TC-CSRF-Token: b5f5b924-4902-470e-808c-e97366ad922c' \
+-H 'Cookie: TCSESSIONID=60FA5ED7BDA8C08BA84EEE3A07A8FC8B' \
+-H 'Content-Length: 0' \
+-H 'Authorization: Basic OjY3ODcyNTkxMjQ5NDA4NDU0NzQ=' \
